@@ -1,0 +1,257 @@
+import pygame
+from copy import deepcopy
+from pygame.locals import *
+pygame.init()
+pygame.font.init()
+for i in pygame.font.get_fonts():
+    print i
+
+font = pygame.font.SysFont("freesans", 30)
+width, height = (500, 500)
+mapsize = [1000, 1000]
+screen=pygame.display.set_mode((width, height),HWSURFACE|DOUBLEBUF|RESIZABLE)
+pygame.display.flip()
+maposition = [0,0]
+class Sprite(pygame.sprite.Sprite):
+    def __init__(self, 
+            name,
+            width, 
+            height, 
+            x, 
+            y, 
+            background = screen,
+            image=pygame.image.load("test.png"), 
+            speed=2,
+            state_frames = {
+                "standing": [pygame.image.load("test.png").convert_alpha()],
+                "walk": [pygame.image.load("test.png").convert_alpha()]
+                }
+            ):
+        self.name = name
+        self.width = width
+        self.height = height
+        self.image = image.convert_alpha()
+        self.x = x
+        self.y = y
+        self.rx = 50
+        self.ry = 50
+        self.background = background
+        self.speed = speed
+        self.frame = 0
+        self.ratio = float(width)/height
+        self.movement = [0, 0]
+        self.state = "standing"
+        self.state_frames = state_frames
+        self.counter = 0
+        self.logging = False
+        self.move_x = {
+                1  : self.move_right,
+                -1 : self.move_left 
+                }
+        self.move_y = {
+                1 : self.move_up,
+                -1: self.move_down
+                }
+
+    def log(self, message):
+        if self.logging:
+            try:
+               print "{name}:{message} {x},{y}".format(
+                    name=self.name,
+                    message=message,
+                    x=self.rx,
+                    y=self.ry
+                    )
+            except:
+               pass
+
+    def draw_me(self, wipe=True):
+        if wipe:
+           self.image.fill((0,0,0,0))
+        if self.frame >= len(self.state_frames[self.state]):
+            self.frame = 0
+        self.image = pygame.transform.scale(self.state_frames[self.state][self.frame],
+                    (self.width, self.height)
+            ).copy()
+        self.background.blit(self.image, (self.x, self.y))
+        if not self.counter % 3:
+           self.frame += 1
+        self.counter += 1   
+        self.log("drawn")
+    
+    def resize(self, height):
+        self.height = height 
+        self.width = int(self.ratio * height)
+        self.draw_me()
+
+    def move(self, x, y):
+        self.x += x
+        self.y += y
+        self.state = "walk"
+
+    def move_left(self):
+        self.move(-self.speed,0)
+        self.movement[0] = -1
+
+    def move_right(self):
+        self.move(self.speed,0)
+        self.movement[0] = 1
+        
+    def move_up(self):
+        self.move(0, self.speed)
+        self.movement[1] = 1
+
+    def move_down(self):
+        self.move(0, -self.speed)
+        self.movement[1] = -1
+
+
+    def update(self):
+        if self.movement[0]:
+            self.move_x.get(self.movement[0])()
+        if self.movement[1]:
+            self.move_y.get(self.movement[1])()
+        if not self.movement[0] and not self.movement[1]:
+            self.state = "standing"
+        string = u'''
+rx, ry    : {rx} , {ry}
+name :    {name}
+x, y :    {x}, {y}
+                      '''.format(rx=self.rx,ry=self.ry,name=self.name,x=self.x,y=self.y)
+        text = font.render(
+                   string,
+                   1,
+                   pygame.Color(255,255,255))
+        try:
+            print "{} : {}, {}".format(self.name, self.ry, self.rx)
+            screen.blit(text, self.x , self.y )        
+        except:
+           pass
+        self.draw_me()
+
+
+class Player(Sprite):
+    def move(self, x, y):
+        self.state = "walk"
+        maposition[0] += x * self.speed/4
+        maposition[1] += y * self.speed/4
+        self.rx = self.x - maposition[0]  
+        self.ry = self.y - maposition[1] 
+
+
+
+class Npc(Sprite):
+    def draw_me(self, wipe=True):
+        if wipe:
+           self.image.fill((0,0,0,0))
+        if self.frame >= len(self.state_frames[self.state]):
+            self.frame = 0
+        self.image = pygame.transform.scale(self.state_frames[self.state][self.frame],
+                    (self.width, self.height)
+            ).copy()
+        self.background.blit(self.image, (self.x + maposition[0], self.y + maposition[1]))
+        self.rx = self.x - maposition[0]
+        self.ry = self.y - maposition[1]
+        if not self.counter % 3:
+           self.frame += 1
+        self.log("drawn")
+        self.counter += 1   
+
+
+pic = Sprite("pic",1000, 1000,0,0)
+background_sprite = Player(
+        "background sprite",
+        500, 
+        500, 
+        0, 
+        0, 
+        image=pygame.image.fromstring("\x00\x00\x00\xff",(1,1),"RGBA"),
+        state_frames = {
+            "standing": [pygame.image.fromstring("\x00\x00\x00\xff",(1,1),"RGBA")],
+            "walk": [pygame.image.fromstring("\x00\x00\x00\xff",(1,1),"RGBA")]
+            }
+
+        )
+
+background = [background_sprite, pic]
+foreground_sprite = Player(
+        "forground sprite",
+        50, 
+        50, 
+        250, 
+        250, 
+        state_frames = {
+                "standing": [pygame.image.load("test.png").convert_alpha()],
+                "walk": [
+                    pygame.image.load("test.png").convert_alpha(), 
+                    pygame.transform.flip(pygame.image.load("test.png").convert_alpha(),1,0)
+                    ]
+                }
+        )
+forground = [foreground_sprite]
+for i in range(10):
+    
+   foreground_npc = Npc(
+           "forground npc",
+           50, 
+           50, 
+           257 + i * 10, 
+           253 - i* 10, 
+           state_frames = {
+                   "standing": [pygame.image.load("test.png").convert_alpha()],
+                   "walk": [pygame.image.load("test.png").convert_alpha(), pygame.transform.flip(pygame.image.load("test.png").convert_alpha(),1,0)],
+                   "background" : pic
+                   }
+           )
+   forground.append(foreground_npc) 
+main_char = [foreground_sprite]
+screen.blit(pygame.transform.scale(pic.image,(pic.width, pic.height)),(0,0))
+clock = pygame.time.Clock()
+while True:
+    pygame.event.pump()
+    for event in pygame.event.get():
+
+       if event.type==QUIT: pygame.display.quit()
+
+       elif event.type==VIDEORESIZE:
+           width, height = event.dict['size']
+           screen=pygame.display.set_mode((width, height),HWSURFACE|DOUBLEBUF|RESIZABLE)
+           background_sprite.height = height
+           background_sprite.width = width
+
+       elif event.type==KEYDOWN:
+           for back in background + main_char:
+              if event.scancode == 111:
+                  back.move_up()
+              elif event.scancode == 116:
+                  back.move_down()
+              elif event.scancode == 113:
+                  back.move_right()
+              elif event.scancode == 114:
+                  back.move_left()
+
+       elif event.type==KEYUP:
+           for back in background + main_char:
+              if event.scancode == 111:
+                  back.movement[1] = 0
+              elif event.scancode == 116:
+                  back.movement[1] = 0
+              elif event.scancode == 113:
+                  back.movement[0] = 0
+              elif event.scancode == 114:
+                  back.movement[0] = 0
+
+    for back in background:
+       back.update()        
+
+    for fore in forground:
+       fore.update()        
+
+    pygame.display.flip()
+    try:
+        forground = sorted(forground,None, lambda z: (z.y , z.x ))
+    except:
+       pass
+    clock.tick(5)
+    print "frame"
+    print maposition
