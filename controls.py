@@ -49,13 +49,17 @@ def right():
 def main(background_layers=[], sprites=[]):        
    global screen
 
+   game=True
    clock = pygame.time.Clock()
-   while True:
+   while game:
        ev.pump()
        for event in ev.get():
    
-          if event.type==QUIT: pygame.display.quit()
-   
+          if event.type==QUIT: 
+              game = False
+              pygame.display.quit()
+              log("exiting")
+              exit(1)
           elif event.type==VIDEORESIZE:
               width, height = event.dict['size']
               screen=pygame.display.set_mode((width, height),HWSURFACE|DOUBLEBUF|RESIZABLE)
@@ -84,10 +88,11 @@ def main(background_layers=[], sprites=[]):
               log(event)
               direction = event.dict.keys()[0]
               action[direction] = event.dict[direction] 
+
        for layer in background_layers:
            layer.update()
        sprites = sorted(sprites,None, lambda sprite: (sprite.j, sprite.i))
-       print [(i.i, i.j) for i in sprites]
+       log([(i.i, i.j) for i in sprites])
        for sprite in sprites:
            sprite.update()
        check_move()
