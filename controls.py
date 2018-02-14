@@ -10,9 +10,15 @@ speed = 1
 x = 0
 y = 0
 action = {i: False for i in ["up", "down", "left", "right"]}
+key_map = {
+        "up":[111, 134],
+        "down": [116, 133],
+        "left": [113, 131],
+        "right": [114, 132]
+        }
 def log(message):
     if verbose:
-        print __name__, message
+        print __name__ , message
 
 
 def check_move():
@@ -54,7 +60,6 @@ def main(background_layers=[], sprites=[]):
    while game:
        ev.pump()
        for event in ev.get():
-   
           if event.type==QUIT: 
               game = False
               pygame.display.quit()
@@ -65,23 +70,23 @@ def main(background_layers=[], sprites=[]):
               screen=pygame.display.set_mode((width, height),HWSURFACE|DOUBLEBUF|RESIZABLE)
    
           elif event.type==KEYDOWN:
-              if event.scancode == 111:
+              if event.scancode in key_map["up"]:
                   ev.post(ev.Event(20, {"up": True})) 
-              elif event.scancode == 116:
+              elif event.scancode in key_map["down"]:
                   ev.post(ev.Event(20, {"down": True})) 
-              elif event.scancode == 113:
+              elif event.scancode in key_map["left"]:
                   ev.post(ev.Event(20, {"left": True})) 
-              elif event.scancode == 114:
+              elif event.scancode in key_map["right"]:
                   ev.post(ev.Event(20, {"right": True})) 
    
           elif event.type==KEYUP:
-              if event.scancode == 111:
+              if event.scancode in key_map["up"]:
                   ev.post(ev.Event(20, {"up": False})) 
-              elif event.scancode == 116:
+              elif event.scancode in key_map["down"]:
                   ev.post(ev.Event(20, {"down": False})) 
-              elif event.scancode == 113:
+              elif event.scancode in key_map["left"]:
                   ev.post(ev.Event(20, {"left": False}))
-              elif event.scancode == 114:
+              elif event.scancode in key_map["right"]:
                   ev.post(ev.Event(20, {"right": False})) 
 
           elif event.type==20:
