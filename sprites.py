@@ -23,6 +23,9 @@ class base_sprite(pygame.sprite.Sprite):
                 (self.width, self.height)
                 ).copy()
 
+    def log(self, message):
+        log(__name__, message)
+
     def state_generator(self):
         for state in self.states:
             for frame_index in range(len(self.states[state])):
@@ -33,8 +36,11 @@ class base_sprite(pygame.sprite.Sprite):
                                self.states[state][frame_index]
                             ).convert_alpha()
 
-        
+    def position_log(self):
+        self.log([self.i, self.j])
+
     def update(self):
+        self.position_log()
         controls.screen.blit(
                 pygame.transform.scale(
                    self.states[self.state][self.step], 
@@ -47,6 +53,7 @@ class player_sprite(base_sprite):
    x = 250
    y = 250
    def update(self):
+        self.position_log()
         if self.step >= len(self.states[self.state]):
            self.step = 0
         controls.screen.blit(

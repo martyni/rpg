@@ -16,9 +16,9 @@ key_map = {
         "left": [113, 131],
         "right": [114, 132]
         }
-def log(message):
+def log(self, message):
     if verbose:
-        print __name__ , message
+        print self , message
 
 
 def check_move():
@@ -63,7 +63,7 @@ def main(background_layers=[], sprites=[]):
           if event.type==QUIT: 
               game = False
               pygame.display.quit()
-              log("exiting")
+              log(__name__, "exiting")
               exit(1)
           elif event.type==VIDEORESIZE:
               width, height = event.dict['size']
@@ -97,7 +97,7 @@ def main(background_layers=[], sprites=[]):
        for layer in background_layers:
            layer.update()
        sprites = sorted(sprites,None, lambda sprite: (sprite.j, sprite.i))
-       log([(i.i, i.j) for i in sprites])
+       #log([(i.i, i.j) for i in sprites])
        for sprite in sprites:
            sprite.update()
        check_move()
