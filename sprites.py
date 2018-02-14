@@ -4,8 +4,8 @@ from controls import pygame, log
 class base_sprite(pygame.sprite.Sprite):
     def __init__(
             self,
-            width,
-            height,
+            width=50,
+            height=50,
             states= {"default": [pygame.image.load("test.png").convert_alpha()]},
             i=0,
             j=0,
@@ -17,11 +17,23 @@ class base_sprite(pygame.sprite.Sprite):
         self.step = 0
         self.i = i
         self.j = j
+        self.state_generator()
         self.image = pygame.transform.scale(
                 self.states[self.state][self.step],
                 (self.width, self.height)
                 ).copy()
 
+    def state_generator(self):
+        for state in self.states:
+            for frame_index in range(len(self.states[state])):
+                if type(self.states[state][frame_index]) == str:
+                    print self.states[state][frame_index]
+                    print frame_index
+                    self.states[state][frame_index] = pygame.image.load(
+                               self.states[state][frame_index]
+                            ).convert_alpha()
+
+        
     def update(self):
         controls.screen.blit(
                 pygame.transform.scale(

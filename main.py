@@ -1,8 +1,7 @@
 import controls
 from controls import pygame, log
 from sprites import base_sprite, player_sprite
-
-background = base_sprite(500, 500)
+from load import levels
 npc = base_sprite(50, 50, i=250, j=250)
 npc1 = base_sprite(50, 50, i=350, j=12)
 npc2 = base_sprite(50, 50, i=20, j=2)
@@ -34,5 +33,6 @@ pc = player_sprite(
             },
 
         )
+background = base_sprite(**levels['l1'].settings)
 controls.main(background_layers=[background], sprites=[pc, npc, npc1, npc2])
 exit(1)
