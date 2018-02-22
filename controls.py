@@ -6,7 +6,7 @@ pygame.init()
 width, height = 500, 500
 screen=pygame.display.set_mode((width, height),HWSURFACE|DOUBLEBUF|RESIZABLE)
 verbose = True
-speed = 1
+speed = 3
 x = 0
 y = 0
 action = {i: False for i in ["up", "down", "left", "right"]}
@@ -90,7 +90,7 @@ def main(background_layers=[], sprites=[]):
                   ev.post(ev.Event(20, {"right": False})) 
 
           elif event.type==20:
-              log(event)
+              log(__name__, event)
               direction = event.dict.keys()[0]
               action[direction] = event.dict[direction] 
 
@@ -103,7 +103,7 @@ def main(background_layers=[], sprites=[]):
        check_move()
        pygame.display.flip()
        screen.fill((255,255,255,0))
-       clock.tick(60)
+       clock.tick(25)
        
 if __name__ == "__main__":
     main()

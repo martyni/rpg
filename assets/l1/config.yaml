@@ -4,4 +4,4 @@ height: 500
 width:  500
 states:
    default:
-           - test.png      
+           - test.png

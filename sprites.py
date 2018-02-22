@@ -1,3 +1,4 @@
+from random import choice
 import controls
 from controls import pygame, log
 
@@ -9,6 +10,8 @@ class base_sprite(pygame.sprite.Sprite):
             states= {"default": [pygame.image.load("test.png").convert_alpha()]},
             i=0,
             j=0,
+            path='',
+            **kwargs
             ):
         self.state="default"
         self.width = width
@@ -17,7 +20,10 @@ class base_sprite(pygame.sprite.Sprite):
         self.step = 0
         self.i = i
         self.j = j
+        self.path = path
+        self.kwargs = kwargs
         self.state_generator()
+        self.children = []
         self.image = pygame.transform.scale(
                 self.states[self.state][self.step],
                 (self.width, self.height)
@@ -32,15 +38,26 @@ class base_sprite(pygame.sprite.Sprite):
                 if type(self.states[state][frame_index]) == str:
                     print self.states[state][frame_index]
                     print frame_index
-                    self.states[state][frame_index] = pygame.image.load(
-                               self.states[state][frame_index]
-                            ).convert_alpha()
+                    try:
+                       self.states[state][frame_index] = pygame.image.load(
+                                  self.states[state][frame_index]
+                               ).convert_alpha()
+                    except:
+                       self.states[state][frame_index] = pygame.image.load(
+                                  self.path + self.states[state][frame_index]
+                               ).convert_alpha()
+
 
     def position_log(self):
         self.log([self.i, self.j])
 
+    def each_frame(self):
+        pass
+
+
     def update(self):
         self.position_log()
+        self.each_frame()
         controls.screen.blit(
                 pygame.transform.scale(
                    self.states[self.state][self.step], 
@@ -48,6 +65,42 @@ class base_sprite(pygame.sprite.Sprite):
                    ),
                    (self.i + controls.x,self.j + controls.y),
         )
+
+class npc_sprite(base_sprite):
+
+    move = 0
+    speed = 2
+    def movement(self, i, j):
+        self.i += i
+        self.j += j
+    
+    def right(self):
+        self.movement(-self.speed,0)
+
+    def left(self):
+        self.movement(self.speed,0)
+
+    def up(self):
+        self.movement(0,self.speed)
+
+    def down(self):
+        self.movement(0, -self.speed)
+
+    def still(self):
+        self.movement(0, 0)
+
+    def choose_random_direction(self):
+        self.current_move = choice([self.up, self.down, self.left, self.right] + 10 * [self.still])
+
+    def each_frame(self):
+        if not self.move % 10:
+            self.choose_random_direction()
+        self.current_move()    
+        self.move += 1
+         
+
+
+
 
 class player_sprite(base_sprite):
    x = 250
