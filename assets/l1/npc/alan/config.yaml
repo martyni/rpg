@@ -5,4 +5,15 @@ j: 20
 states: 
    default: 
       - owl.jpg
-
+   up: 
+      - owl.jpg
+      - owl-flip.jpg
+   down: 
+      - owl.jpg
+      - owl-flip.jpg
+   left: 
+      - owl.jpg
+      - owl-flip.jpg
+   right: 
+      - owl.jpg
+      - owl-flip.jpg

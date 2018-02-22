@@ -37,7 +37,6 @@ class Base(object):
                     self.settings['states'][state].insert(image_file, 
                             self.get_file(image_name)
                             )
-        print self.settings['states']
 
     def parse_files(self):
         for filename in files:
@@ -49,7 +48,6 @@ class Base(object):
                     config = yaml.load(cfg.read())
                     self.settings.update(config)
                     self.settings['path'] = self.path
-                pprint(config)
 
 for level in levels:
     level_key = '/'.join(['assets', level] )

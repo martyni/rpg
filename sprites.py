@@ -36,8 +36,6 @@ class base_sprite(pygame.sprite.Sprite):
         for state in self.states:
             for frame_index in range(len(self.states[state])):
                 if type(self.states[state][frame_index]) == str:
-                    print self.states[state][frame_index]
-                    print frame_index
                     try:
                        self.states[state][frame_index] = pygame.image.load(
                                   self.states[state][frame_index]
@@ -58,6 +56,8 @@ class base_sprite(pygame.sprite.Sprite):
     def update(self):
         self.position_log()
         self.each_frame()
+        if self.step >= len(self.states[self.state]):
+           self.step = 0
         controls.screen.blit(
                 pygame.transform.scale(
                    self.states[self.state][self.step], 
@@ -65,25 +65,31 @@ class base_sprite(pygame.sprite.Sprite):
                    ),
                    (self.i + controls.x,self.j + controls.y),
         )
+        self.step += 1
+        self.state = "default"
 
 class npc_sprite(base_sprite):
-
     move = 0
-    speed = 2
+    speed = 1
+    walk_duration = 20
     def movement(self, i, j):
         self.i += i
         self.j += j
     
     def right(self):
+        self.state = "right"
         self.movement(-self.speed,0)
 
     def left(self):
+        self.state = "left"
         self.movement(self.speed,0)
 
     def up(self):
+        self.state = "up"
         self.movement(0,self.speed)
 
     def down(self):
+        self.state = "down"
         self.movement(0, -self.speed)
 
     def still(self):
@@ -93,14 +99,10 @@ class npc_sprite(base_sprite):
         self.current_move = choice([self.up, self.down, self.left, self.right] + 10 * [self.still])
 
     def each_frame(self):
-        if not self.move % 10:
+        if not self.move % self.walk_duration:
             self.choose_random_direction()
         self.current_move()    
         self.move += 1
-         
-
-
-
 
 class player_sprite(base_sprite):
    x = 250
@@ -120,7 +122,6 @@ class player_sprite(base_sprite):
         for action in controls.action:
             if controls.action[action]:
                 self.state = action
-                
         self.step += 1
         self.i = self.x - controls.x  
         self.j = self.y - controls.y 

@@ -18,7 +18,8 @@ key_map = {
         }
 def log(self, message):
     if verbose:
-        print self , message
+        #print self , message
+        pass
 
 
 def check_move():

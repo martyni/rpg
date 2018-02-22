@@ -5,3 +5,11 @@ j: 120
 states:
    default:
       - test.png
+   up:
+      - test.png
+   down:
+      - test.png
+   left:
+      - test.png
+   right:
+      - test.png
