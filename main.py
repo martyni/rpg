@@ -30,7 +30,7 @@ pc = player_sprite(
             "right": [
                 pygame.image.load("test.png").convert_alpha(),
                 pygame.transform.flip(pygame.image.load("test.png").convert_alpha(),1,0)
-                ]
+                ],
             },
 
         )
@@ -38,5 +38,5 @@ a_text = base_text()
 background = base_sprite(**levels['l1'].settings)
 level_sprites = [npc_sprite(**child.settings) for child in levels['l1'].children['npc']]
 level_sprites.append(pc)        
-controls.main(background_layers=[background], sprites=level_sprites)
+controls.main(background_layers=[background], sprites=level_sprites, text=a_text)
 exit(1)

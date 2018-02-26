@@ -11,6 +11,8 @@ class base_sprite(pygame.sprite.Sprite):
             i=0,
             j=0,
             path='',
+            colide=choice(["Ouch! Don't bang into me!", "Hello, how are you today?", "Inside, I'm dying"]),
+            message=choice(["I like you"]),
             **kwargs
             ):
         self.state="default"
@@ -52,6 +54,8 @@ class base_sprite(pygame.sprite.Sprite):
     def each_frame(self):
         pass
 
+    def resize(self, *args):
+        pass
 
     def update(self):
         self.position_log()
@@ -67,6 +71,8 @@ class base_sprite(pygame.sprite.Sprite):
         )
         self.step += 1
         self.state = "default"
+        self.passback = {}
+        return self.passback
 
 class npc_sprite(base_sprite):
     move = 0
@@ -119,9 +125,14 @@ class player_sprite(base_sprite):
                    (self.x, self.y),
         )
         self.state = "default"
-        for action in controls.action:
-            if controls.action[action]:
-                self.state = action
+        for action in controls.actions:
+            if controls.actions[action] and action not in ["attack", "back"]:
+                if self.states[action]:
+                   self.state = action
+            elif controls.actions[action] and action in ["attack", "back"]:
+                print(action)
         self.step += 1
         self.i = self.x - controls.x  
         self.j = self.y - controls.y 
+        self.passback = {}
+        return self.passback
