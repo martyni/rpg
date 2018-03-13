@@ -132,9 +132,8 @@ def main(background_layers=[], sprites=[], text=None):
                text_queue.append(a['text'])
        text_queue = text.update(text_queue)
        check_move()
-       pygame.display.flip()
-       #pygame.display.update(background_layers[0].image.get_rect())
-       #if not pygame.time.get_ticks() % 5:
+       #pygame.display.flip()
+       pygame.display.update(background_layers[0].image.get_rect())
        screen.fill((255,255,255))
        clock.tick(25)
        #print clock.get_fps()

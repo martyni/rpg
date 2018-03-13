@@ -20,7 +20,7 @@ def main(background_layers=[], sprites=[]):
               screen=pygame.display.set_mode((width, height),HWSURFACE|DOUBLEBUF|RESIZABLE)
               [sprite.resize(width, height) for sprite in sprites]
    
-          print event
+          print(event)
        
 if __name__ == "__main__":
     main()

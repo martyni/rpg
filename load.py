@@ -5,7 +5,7 @@ from controls import log
 
 assets =[{i[0] :[i[1], i[2]]} for i in os.walk('assets')] 
 assets ={i[0] :[i[1], i[2]] for i in os.walk('assets')}
-levels = {i: {} for i in assets['assets'][0]}
+levels = {i: {} for i in assets['assets'][0] if 'l' in i}
 
 class Base(object):
     def __init__(self, level, files, directories):

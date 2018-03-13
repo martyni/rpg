@@ -14,29 +14,29 @@ pc = player_sprite(
         states={
             "default":
                 [ 
-                pygame.image.load("Iandalara_base0{}.bmp".format(4)).convert_alpha()
+                pygame.image.load("assets/images/Iandalara_base0{}.bmp".format(4)).convert_alpha()
                 ] * 3 +
                 [
-                pygame.image.load("Iandalara_base0{}.bmp".format(i)).convert_alpha() for i in range(3)
+                pygame.image.load("assets/images/Iandalara_base0{}.bmp".format(i)).convert_alpha() for i in range(3)
                 ],
             "default_up":
                 [ 
-                pygame.image.load("Iandalara_base_up0{}.bmp".format(4)).convert_alpha()
+                pygame.image.load("assets/images/Iandalara_base_up0{}.bmp".format(4)).convert_alpha()
                 ] * 3 +
                 [
-                pygame.image.load("Iandalara_base_up0{}.bmp".format(i)).convert_alpha() for i in range(3)
+                pygame.image.load("assets/images/Iandalara_base_up0{}.bmp".format(i)).convert_alpha() for i in range(3)
                 ],
             "up": [
-                pygame.image.load("Iandalara_up0{}.bmp".format(i)).convert_alpha() for i in range(4)
+                pygame.image.load("assets/images/Iandalara_up0{}.bmp".format(i)).convert_alpha() for i in range(4)
                 ],
             "down": [
-                pygame.image.load("Iandalara_down0{}.bmp".format(i)).convert_alpha() for i in range(4)
+                pygame.image.load("assets/images/Iandalara_down0{}.bmp".format(i)).convert_alpha() for i in range(4)
                 ],
             "left": [
-                pygame.image.load("Iandalara_down0{}.bmp".format(i)).convert_alpha() for i in range(4)
+                pygame.image.load("assets/images/Iandalara_down0{}.bmp".format(i)).convert_alpha() for i in range(4)
                 ],
             "right": [
-                pygame.image.load("Iandalara_down0{}.bmp".format(i)).convert_alpha() for i in range(4)
+                pygame.image.load("assets/images/Iandalara_down0{}.bmp".format(i)).convert_alpha() for i in range(4)
                 ],
             },
 
