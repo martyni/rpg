@@ -3,21 +3,25 @@ from pygame import event as ev
 from copy import deepcopy
 from pygame.locals import *
 pygame.init()
-width, height = 500, 500
-screen=pygame.display.set_mode((width, height),DOUBLEBUF|RESIZABLE)
+width, height = 900,900 
+screen=pygame.display.set_mode((width, height),DOUBLEBUF)
+
+blank_screen = pygame.Surface((width, height))
+blank_screen.fill((255,255,255))
 verbose = True
 speed = 3
 x = 0
 y = 0
 actions = {i: False for i in ["up", "down", "left", "right", "attack", "back"]}
 key_map = {
-        "up":[111, 134],
-        "down": [116, 133],
-        "left": [113, 131],
-        "right": [114, 132],
-        "attack": [8],
-        "back": [9]
+        "up":[111, 134, 126],
+        "down": [116, 133, 125],
+        "left": [113, 131, 123],
+        "right": [114, 132, 124],
+        "attack": [8, 0],
+        "back": [9, 1]
         }
+
 
 def log(self, message):
     if verbose:
@@ -66,6 +70,7 @@ def back():
 
 def main(background_layers=[], sprites=[], text=None):        
    global screen
+   global blank_screen
    text_queue = ["Hello Game", "How are you today?"]
    game=True
    clock = pygame.time.Clock()
@@ -79,8 +84,11 @@ def main(background_layers=[], sprites=[], text=None):
               exit(1)
           elif event.type==VIDEORESIZE:
               width, height = event.dict['size']
-              screen=pygame.display.set_mode((width, height),HWSURFACE|DOUBLEBUF|RESIZABLE)
+              screen=pygame.display.set_mode((width, height),DOUBLEBUF|RESIZABLE,12)
+              blank_screen = pygame.Surface((width, height))
+              blank_screen.fill((255,255,255))
               [sprite.resize(width, height) for sprite in sprites]
+              text.resize(width,height)
    
           elif event.type==KEYDOWN:
               if event.scancode in key_map["up"]:
@@ -125,8 +133,11 @@ def main(background_layers=[], sprites=[], text=None):
        text_queue = text.update(text_queue)
        check_move()
        pygame.display.flip()
-       screen.fill((255,255,255,0))
+       #pygame.display.update(background_layers[0].image.get_rect())
+       #if not pygame.time.get_ticks() % 5:
+       screen.fill((255,255,255))
        clock.tick(25)
+       #print clock.get_fps()
        
 if __name__ == "__main__":
     main()

@@ -7,29 +7,36 @@ npc = base_sprite(50, 50, i=250, j=250)
 npc1 = base_sprite(50, 50, i=350, j=12)
 npc2 = base_sprite(50, 50, i=20, j=2)
 pc = player_sprite(
-        50, 
-        50, 
+        40, 
+        70, 
         i=250, 
         j=250,
         states={
-            "default": [
-                pygame.image.load("test.png").convert_alpha(),
+            "default":
+                [ 
+                pygame.image.load("Iandalara_base0{}.bmp".format(4)).convert_alpha()
+                ] * 3 +
+                [
+                pygame.image.load("Iandalara_base0{}.bmp".format(i)).convert_alpha() for i in range(3)
+                ],
+            "default_up":
+                [ 
+                pygame.image.load("Iandalara_base_up0{}.bmp".format(4)).convert_alpha()
+                ] * 3 +
+                [
+                pygame.image.load("Iandalara_base_up0{}.bmp".format(i)).convert_alpha() for i in range(3)
                 ],
             "up": [
-                pygame.image.load("test.png").convert_alpha(),
-                pygame.transform.flip(pygame.image.load("test.png").convert_alpha(),1,0)
+                pygame.image.load("Iandalara_up0{}.bmp".format(i)).convert_alpha() for i in range(4)
                 ],
             "down": [
-                pygame.image.load("test.png").convert_alpha(),
-                pygame.transform.flip(pygame.image.load("test.png").convert_alpha(),1,0)
+                pygame.image.load("Iandalara_down0{}.bmp".format(i)).convert_alpha() for i in range(4)
                 ],
             "left": [
-                pygame.image.load("test.png").convert_alpha(),
-                pygame.transform.flip(pygame.image.load("test.png").convert_alpha(),1,0)
+                pygame.image.load("Iandalara_down0{}.bmp".format(i)).convert_alpha() for i in range(4)
                 ],
             "right": [
-                pygame.image.load("test.png").convert_alpha(),
-                pygame.transform.flip(pygame.image.load("test.png").convert_alpha(),1,0)
+                pygame.image.load("Iandalara_down0{}.bmp".format(i)).convert_alpha() for i in range(4)
                 ],
             },
 

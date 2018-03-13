@@ -50,7 +50,6 @@ class base_text(pygame.sprite.Sprite):
                    pass 
         if self.cooldown >0:
            self.cooldown -= 1       
-           print self.cooldown
         return text_queue 
         
 

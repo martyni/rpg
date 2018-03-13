@@ -5,6 +5,8 @@ j: 120
 states:
    default:
       - test.png
+   default_up:
+      - test.png
    up:
       - test.png
    down:

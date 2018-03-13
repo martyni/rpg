@@ -20,17 +20,49 @@ class base_sprite(pygame.sprite.Sprite):
         self.height = height
         self.states = states
         self.step = 0
+        self.frame_counter = 0
         self.i = i
         self.j = j
         self.path = path
         self.kwargs = kwargs
         self.state_generator()
         self.children = []
+        self.rest_state = "default"
+        self.state_map ={
+           "up": self.up,
+           "down": self.down,
+           "left": self.left,
+           "right": self.right
+        }
         self.image = pygame.transform.scale(
                 self.states[self.state][self.step],
                 (self.width, self.height)
                 ).copy()
 
+    def movement(self,i,j):
+        pass
+    
+    def right(self):
+        self.state = "right"
+        self.rest_state = "default_up"
+        self.movement(-self.speed,0)
+
+    def left(self):
+        self.state = "left"
+        self.movement(self.speed,0)
+
+    def up(self):
+        self.state = "up"
+        self.rest_state = "default_up"
+        self.movement(0,self.speed)
+
+    def down(self):
+        self.state = "down"
+        self.rest_state = "default"
+        self.movement(0, -self.speed)
+
+    def still(self):
+        self.movement(0, 0)
     def log(self, message):
         log(__name__, message)
 
@@ -69,8 +101,10 @@ class base_sprite(pygame.sprite.Sprite):
                    ),
                    (self.i + controls.x,self.j + controls.y),
         )
-        self.step += 1
-        self.state = "default"
+        self.state = self.rest_state
+        self.frame_counter += 1
+        if not self.frame_counter % 3:
+           self.step += 1 
         self.passback = {}
         return self.passback
 
@@ -78,28 +112,11 @@ class npc_sprite(base_sprite):
     move = 0
     speed = 1
     walk_duration = 20
+    name = "npc"
+
     def movement(self, i, j):
         self.i += i
         self.j += j
-    
-    def right(self):
-        self.state = "right"
-        self.movement(-self.speed,0)
-
-    def left(self):
-        self.state = "left"
-        self.movement(self.speed,0)
-
-    def up(self):
-        self.state = "up"
-        self.movement(0,self.speed)
-
-    def down(self):
-        self.state = "down"
-        self.movement(0, -self.speed)
-
-    def still(self):
-        self.movement(0, 0)
 
     def choose_random_direction(self):
         self.current_move = choice([self.up, self.down, self.left, self.right] + 10 * [self.still])
@@ -110,9 +127,12 @@ class npc_sprite(base_sprite):
         self.current_move()    
         self.move += 1
 
-class player_sprite(base_sprite):
-   x = 250
-   y = 250
+class player_sprite(npc_sprite):
+   x = controls.width/2 - 20
+   y = controls.width/2 - 35
+   name = "player"
+
+
    def update(self):
         self.position_log()
         if self.step >= len(self.states[self.state]):
@@ -124,14 +144,18 @@ class player_sprite(base_sprite):
                    ),
                    (self.x, self.y),
         )
-        self.state = "default"
-        for action in controls.actions:
+        self.state = self.rest_state
+        print controls.actions.keys()
+        for action in ["left", "right", "down", "up"]:
             if controls.actions[action] and action not in ["attack", "back"]:
                 if self.states[action]:
                    self.state = action
+                   self.state_map[action]()
             elif controls.actions[action] and action in ["attack", "back"]:
                 print(action)
-        self.step += 1
+        self.frame_counter += 1
+        if not self.frame_counter % 5:
+           self.step += 1 
         self.i = self.x - controls.x  
         self.j = self.y - controls.y 
         self.passback = {}
