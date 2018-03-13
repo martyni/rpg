@@ -145,7 +145,6 @@ class player_sprite(npc_sprite):
                    (self.x, self.y),
         )
         self.state = self.rest_state
-        print controls.actions.keys()
         for action in ["left", "right", "down", "up"]:
             if controls.actions[action] and action not in ["attack", "back"]:
                 if self.states[action]:
