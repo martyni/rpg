@@ -2,9 +2,11 @@ import pygame
 from pygame import event as ev
 from copy import deepcopy
 from pygame.locals import *
+from pprint import pprint
+from random import randint
 pygame.init()
-width, height = 900,900 
-screen=pygame.display.set_mode((width, height),DOUBLEBUF)
+width, height = 800,800 
+screen=pygame.display.set_mode((width, height),DOUBLEBUF|HWSURFACE)
 
 blank_screen = pygame.Surface((width, height))
 blank_screen.fill((255,255,255))
@@ -29,7 +31,7 @@ def log(self, message):
         pass
 
 
-def check_move():
+def check_move(blocking):
     funcs = {
             "up": up,
             "down": down,
@@ -38,10 +40,12 @@ def check_move():
             "attack": attack,
             "back": back
             }
-
+    move = False
     for i in actions:
-        if actions[i]:
+        if actions[i] and i not in blocking:
             funcs[i]()
+            move = True
+    return move
 
 def move(i,j):
   global x
@@ -68,14 +72,16 @@ def attack():
 def back():
     pass
 
-def main(background_layers=[], sprites=[], text=None):        
+def main(background_layers=[], sprites=[], text=None, sprite_groups=None):        
    global screen
    global blank_screen
    text_queue = ["Hello Game", "How are you today?"]
    game=True
    clock = pygame.time.Clock()
+   frames = 0
    while game:
        ev.pump()
+       blocking = []
        for event in ev.get():
           if event.type==QUIT: 
               game = False
@@ -125,18 +131,37 @@ def main(background_layers=[], sprites=[], text=None):
 
        for layer in background_layers:
            layer.update()
-       sprites = sorted(sprites,None, lambda sprite: (sprite.j, sprite.i))
+       sprites = sorted(sprites, None, lambda sprite: (sprite.rect.y, sprite.rect.x))
+       rect_list = []
        for sprite in sprites:
            a = sprite.update()
+           #pygame.draw.rect(screen, (0,0,255), sprite.rect) 
+           rect_list.append(sprite.rect)
+           
            if a.get('text'):
                text_queue.append(a['text'])
+           for group in sprite_groups:
+              if sprite in group:
+                 group.remove(sprite) 
+                 collision = pygame.sprite.spritecollideany(sprite, group)
+                 if collision:
+                    #pygame.draw.rect(screen, (255,0,0,40), collision.rect) 
+                    blocking = sprite.collide(collision.rect) if sprite.collide(collision.rect) else blocking
+                 group.add(sprite)
        text_queue = text.update(text_queue)
-       check_move()
+       move = check_move(blocking)
        #pygame.display.flip()
-       pygame.display.update(background_layers[0].image.get_rect())
-       screen.fill((255,255,255))
-       clock.tick(25)
-       #print clock.get_fps()
-       
+       #for group in sprite_groups:
+       #   print pygame.sprite.groupcollide(sprite_groups[0], group, False, False)
+       #pygame.display.update(background_layers[0].image.get_rect())
+       pygame.display.update(rect_list)
+       if move:
+          #screen.fill((randint(1,255), randint(1,255), randint(1,255)))
+          pass
+       screen.fill((250,250,250,0))
+       #pygame.display.update(rect_list)
+       clock.tick()
+       pygame.display.set_caption(str(clock.get_fps())) 
+       frames += 1 
 if __name__ == "__main__":
     main()

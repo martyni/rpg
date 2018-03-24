@@ -1,12 +1,14 @@
 from random import choice
 import controls
 from controls import pygame, log
-
+from time import sleep
+from pprint import pprint
 class base_sprite(pygame.sprite.Sprite):
+    name = "default"
     def __init__(
             self,
-            width=50,
-            height=50,
+            width=40,
+            height=80,
             states= {"default": [pygame.image.load("test.png").convert_alpha()]},
             i=0,
             j=0,
@@ -15,6 +17,7 @@ class base_sprite(pygame.sprite.Sprite):
             message=choice(["I like you"]),
             **kwargs
             ):
+        pygame.sprite.Sprite.__init__(self)
         self.state="default"
         self.width = width
         self.height = height
@@ -38,17 +41,32 @@ class base_sprite(pygame.sprite.Sprite):
                 self.states[self.state][self.step],
                 (self.width, self.height)
                 ).copy()
+        self.rect = pygame.Rect(self.i + 3, self.j + 3, self.width -6, self.height -6)
 
     def movement(self,i,j):
-        pass
+        self.rect.x = self.i + controls.x
+        self.rect.y = self.j + controls.y
+    
+    def collide(self, rect):
+        if rect.x > self.rect.x:
+           self.right()
+        elif rect.x < self.rect.x:
+           self.left()
+        if rect.y < self.rect.y:
+           self.up()
+        elif rect.y > self.rect.y:
+           self.down()
+        return None
     
     def right(self):
         self.state = "right"
-        self.rest_state = "default_up"
+        self.rest_state = "default_right"
         self.movement(-self.speed,0)
+        
 
     def left(self):
         self.state = "left"
+        self.rest_state = "default_left"
         self.movement(self.speed,0)
 
     def up(self):
@@ -78,7 +96,10 @@ class base_sprite(pygame.sprite.Sprite):
                        self.states[state][frame_index] = pygame.image.load(
                                   self.path + self.states[state][frame_index]
                                ).convert_alpha()
-
+                self.states[state][frame_index] = pygame.transform.scale(
+                                                         self.states[state][frame_index],
+                                                         (self.width, self.height)
+                                                      )
 
     def position_log(self):
         self.log([self.i, self.j])
@@ -95,20 +116,28 @@ class base_sprite(pygame.sprite.Sprite):
         if self.step >= len(self.states[self.state]):
            self.step = 0
         controls.screen.blit(
-                pygame.transform.scale(
+                #pygame.transform.scale(
                    self.states[self.state][self.step], 
-                   (self.width, self.height)
-                   ),
+                #  (self.width, self.height)
+                #   ),
                    (self.i + controls.x,self.j + controls.y),
         )
         self.state = self.rest_state
         self.frame_counter += 1
-        if not self.frame_counter % 3:
+        if not self.frame_counter % 2:
            self.step += 1 
         self.passback = {}
+        self.movement(0,0)
         return self.passback
 
-class npc_sprite(base_sprite):
+class physical_sprite(base_sprite):
+    speed = 1
+    
+class static_sprite(physical_sprite):
+    speed = 0
+    name = "static"
+
+class npc_sprite(physical_sprite):
     move = 0
     speed = 1
     walk_duration = 20
@@ -117,6 +146,8 @@ class npc_sprite(base_sprite):
     def movement(self, i, j):
         self.i += i
         self.j += j
+        self.rect.x = self.i + controls.x
+        self.rect.y = self.j + controls.y
 
     def choose_random_direction(self):
         self.current_move = choice([self.up, self.down, self.left, self.right] + 10 * [self.still])
@@ -127,21 +158,36 @@ class npc_sprite(base_sprite):
         self.current_move()    
         self.move += 1
 
-class player_sprite(npc_sprite):
+class player_sprite(physical_sprite):
    x = controls.width/2 - 20
-   y = controls.width/2 - 35
+   y = controls.height/2 - 35
+   sensitivity = 3
    name = "player"
 
+   def movement(self,i,j):
+        pass
 
+   def collide(self, rect):
+        collisions = [False, False]
+        if rect.x > self.rect.x and rect.collidepoint(self.rect.midright):
+           collisions[0] ="right"
+        elif rect.x < self.rect.x and rect.collidepoint(self.rect.midleft):
+           collisions[0] ="left"
+        if rect.y < self.rect.y and rect.collidepoint(self.rect.midtop):
+           collisions[1] = "up"
+        elif rect.y > self.rect.y and rect.collidepoint(self.rect.midbottom):
+           collisions[1] = "down"
+        return collisions
+        
    def update(self):
         self.position_log()
         if self.step >= len(self.states[self.state]):
            self.step = 0
         controls.screen.blit(
-                pygame.transform.scale(
+      #          pygame.transform.scale(
                    self.states[self.state][self.step], 
-                   (self.width, self.height)
-                   ),
+      #             (self.width, self.height)
+      #             ),
                    (self.x, self.y),
         )
         self.state = self.rest_state
@@ -153,9 +199,9 @@ class player_sprite(npc_sprite):
             elif controls.actions[action] and action in ["attack", "back"]:
                 print(action)
         self.frame_counter += 1
-        if not self.frame_counter % 5:
+        if not self.frame_counter % 4:
            self.step += 1 
-        self.i = self.x - controls.x  
-        self.j = self.y - controls.y 
+        self.i = self.x 
+        self.j = self.y 
         self.passback = {}
         return self.passback

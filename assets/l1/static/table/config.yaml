@@ -1,15 +1,11 @@
 width: 40
 height: 80
-i: 120 
-j: 120
+i: 10 
+j: 17
 states:
    default:
       - test.png
    default_up:
-      - test.png
-   default_right:
-      - test.png
-   default_left:
       - test.png
    up:
       - test.png

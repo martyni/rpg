@@ -1,5 +1,5 @@
-width: 50
-height: 50
+width: 40
+height: 80
 i: 170 
 j: 20
 states: 
@@ -7,6 +7,10 @@ states:
       - owl.jpg
    default_up: 
       - owl.jpg
+   default_right: 
+      - owl.jpg
+   default_left: 
+      - owl-flip.jpg
    up: 
       - owl.jpg
       - owl-flip.jpg
