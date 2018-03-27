@@ -1,0 +1,43 @@
+i: 30
+j: 201
+x: 300
+y: 205
+states:
+  left:
+    - Iandalara_right00.bmp
+    - Iandalara_right01.bmp
+    - Iandalara_right02.bmp
+    - Iandalara_right03.bmp
+  default_up:
+    - Iandalara_base04.bmp
+    - Iandalara_base04.bmp
+    - Iandalara_base04.bmp
+    - Iandalara_base00.bmp
+    - Iandalara_base01.bmp
+    - Iandalara_base02.bmp
+  default_left:
+    - Iandalara_right00.bmp
+  default_right:
+    - Iandalara_left00.bmp
+  down:
+    - Iandalara_up00.bmp
+    - Iandalara_up01.bmp
+    - Iandalara_up02.bmp
+    - Iandalara_up03.bmp
+  up:
+    - Iandalara_down00.bmp
+    - Iandalara_down01.bmp
+    - Iandalara_down02.bmp
+    - Iandalara_down03.bmp
+  default:
+    - Iandalara_base_up04.bmp
+    - Iandalara_base_up04.bmp
+    - Iandalara_base_up04.bmp
+    - Iandalara_base_up00.bmp
+    - Iandalara_base_up01.bmp
+    - Iandalara_base_up02.bmp
+  right:
+    - Iandalara_left00.bmp
+    - Iandalara_left01.bmp
+    - Iandalara_left02.bmp
+    - Iandalara_left03.bmp

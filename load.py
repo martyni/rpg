@@ -18,7 +18,10 @@ class Base(object):
         self.children = {}
         self.path = 'assets/{}/'.format(self.level)
         self.parse_files()
-        self.update_states()
+        try:
+           self.update_states()
+        except:
+           pass
 
     def get_file(self, item):
         filename = 'assets/{level}/{item}'.format(
@@ -32,12 +35,14 @@ class Base(object):
             image_list = self.settings['states'][state]
             for image_file in range(len(image_list)):
                 if self.path not in state[image_file]:
-                    image_name = image_list.pop()
+                    try:
+                      image_name = image_list.pop()
                     
-                    self.settings['states'][state].insert(image_file, 
+                      self.settings['states'][state].insert(image_file, 
                             self.get_file(image_name)
                             )
-
+                    except:
+                      pass
     def parse_files(self):
         for filename in files:
            

@@ -5,42 +5,42 @@ from text import base_text
 from load import levels
 from sprite_groups import main_physical_group
 pc = player_sprite(
-        34*2, 
-        64*2, 
+        34, 
+        64, 
         i=controls.width/2 - 20,
         j=controls.height/2 - 35,
         states={
             "default":
                 [ 
-                pygame.image.load("assets/images/Iandalara_base0{}.bmp".format(4)).convert_alpha()
+                "assets/images/Iandalara_base0{}.bmp".format(4)
                 ] * 3 +
                 [
-                pygame.image.load("assets/images/Iandalara_base0{}.bmp".format(i)).convert_alpha() for i in range(3)
+                "assets/images/Iandalara_base0{}.bmp".format(i) for i in range(3)
                 ],
             "default_up":
                 [ 
-                pygame.image.load("assets/images/Iandalara_base_up0{}.bmp".format(4)).convert_alpha()
+                "assets/images/Iandalara_base_up0{}.bmp".format(4)
                 ] * 3 +
                 [
-                pygame.image.load("assets/images/Iandalara_base_up0{}.bmp".format(i)).convert_alpha() for i in range(3)
+                "assets/images/Iandalara_base_up0{}.bmp".format(i) for i in range(3)
                 ],
             "default_right": [
-                pygame.image.load("assets/images/Iandalara_right00.bmp").convert_alpha()
+                "assets/images/Iandalara_right00.bmp"
                 ],
             "default_left": [
-                pygame.image.load("assets/images/Iandalara_left00.bmp").convert_alpha()
+                "assets/images/Iandalara_left00.bmp"
                 ],
             "up": [
-                pygame.image.load("assets/images/Iandalara_up0{}.bmp".format(i)).convert_alpha() for i in range(4)
+                "assets/images/Iandalara_up0{}.bmp".format(i) for i in range(4)
                 ],
             "down": [
-                pygame.image.load("assets/images/Iandalara_down0{}.bmp".format(i)).convert_alpha() for i in range(4)
+                "assets/images/Iandalara_down0{}.bmp".format(i) for i in range(4)
                 ],
             "left": [
-                pygame.image.load("assets/images/Iandalara_left0{}.bmp".format(i)).convert_alpha() for i in range(4)
+                "assets/images/Iandalara_left0{}.bmp".format(i) for i in range(4)
                 ],
             "right": [
-                pygame.image.load("assets/images/Iandalara_right0{}.bmp".format(i)).convert_alpha() for i in range(4)
+                "assets/images/Iandalara_right0{}.bmp".format(i) for i in range(4)
                 ],
             },
 

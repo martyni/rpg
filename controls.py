@@ -1,12 +1,15 @@
 import pygame
+import pygame.midi
 from pygame import event as ev
 from copy import deepcopy
 from pygame.locals import *
 from pprint import pprint
 from random import randint
+from math import pi
+from time import sleep
 pygame.init()
-width, height = 800,800 
-screen=pygame.display.set_mode((width, height),DOUBLEBUF|HWSURFACE)
+width, height = 640, 480
+screen=pygame.display.set_mode((width, height))
 
 blank_screen = pygame.Surface((width, height))
 blank_screen.fill((255,255,255))
@@ -78,7 +81,6 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None):
    text_queue = ["Hello Game", "How are you today?"]
    game=True
    clock = pygame.time.Clock()
-   frames = 0
    while game:
        ev.pump()
        blocking = []
@@ -139,6 +141,7 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None):
            rect_list.append(sprite.rect)
            
            if a.get('text'):
+               print len(text_queue)
                text_queue.append(a['text'])
            for group in sprite_groups:
               if sprite in group:
@@ -154,14 +157,24 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None):
        #for group in sprite_groups:
        #   print pygame.sprite.groupcollide(sprite_groups[0], group, False, False)
        #pygame.display.update(background_layers[0].image.get_rect())
+       crt_tv(screen, rect_list, 640, 480)
        pygame.display.update(rect_list)
        if move:
           #screen.fill((randint(1,255), randint(1,255), randint(1,255)))
           pass
        screen.fill((250,250,250,0))
        #pygame.display.update(rect_list)
-       clock.tick()
+       clock.tick(40)
        pygame.display.set_caption(str(clock.get_fps())) 
-       frames += 1 
+
+
+
+def crt_tv(screen, rect_list, width, height, flicker=40):
+       for i in xrange(height/4):
+          pygame.draw.aaline(screen, (120 + randint(0, flicker), 120 + randint(0, flicker), 120 + randint(0, flicker)), (0,i * 4), (width,i * 4))
+          
+          rect_list.append(pygame.Rect(0, i * 4, 640, 1)) 
+          
+
 if __name__ == "__main__":
     main()

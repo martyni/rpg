@@ -27,7 +27,6 @@ class base_text(pygame.sprite.Sprite):
         self.background.fill((255,255,255, 200))
 
     def update(self, text_queue):    
-        self.resize(self.width, self.height)
         try:
            self.text = text_queue[0]
            self.write = True
@@ -35,6 +34,7 @@ class base_text(pygame.sprite.Sprite):
            self.write = False 
 
         if self.write:
+           self.resize(self.width, self.height)
            controls.screen.blit(self.background, [0, self.height - int(self.height /9)])
            pygame.draw.rect(controls.screen, (0,0,0,0),[0, self.height - int(self.height /9), self.width, int(self.height/9)], self.border_width )
            controls.screen.blit(self.text_screen, [ self.border_width, self.height - int(self.height /9)])

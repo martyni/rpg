@@ -1,19 +1,22 @@
+from ruamel.yaml import YAML
 from random import choice
+import sys
 import controls
 from controls import pygame, log
 from time import sleep
 from pprint import pprint
+
 class base_sprite(pygame.sprite.Sprite):
     name = "default"
     def __init__(
             self,
-            width=40,
-            height=80,
+            width=34,
+            height=64,
             states= {"default": [pygame.image.load("test.png").convert_alpha()]},
             i=0,
             j=0,
-            path='',
-            colide=choice(["Ouch! Don't bang into me!", "Hello, how are you today?", "Inside, I'm dying"]),
+            path='assets/images/',
+            colide=["Ouch! Don't bang into me!", "Hello, how are you today?", "Inside, I'm dying"],
             message=choice(["I like you"]),
             **kwargs
             ):
@@ -22,15 +25,18 @@ class base_sprite(pygame.sprite.Sprite):
         self.width = width
         self.height = height
         self.states = states
+        self.colide = colide
         self.step = 0
         self.frame_counter = 0
         self.i = i
         self.j = j
         self.path = path
         self.kwargs = kwargs
+        self.state_files = { key: list(states[key]) for key in states}
         self.state_generator()
         self.children = []
         self.rest_state = "default"
+        
         self.state_map ={
            "up": self.up,
            "down": self.down,
@@ -58,6 +64,21 @@ class base_sprite(pygame.sprite.Sprite):
            self.down()
         return None
     
+    def to_yaml(self):
+        yaml = YAML()
+        yaml.explicit_start = True
+        yaml.indent(sequence=4, offset=2)
+        data = {
+        "i":self.i,
+        "j":self.j,
+        "x":self.x,
+        "y":self.y}
+        data.update({"states":self.state_files})
+        print yaml.dump(
+        data,
+        sys.stdout
+        )
+
     def right(self):
         self.state = "right"
         self.rest_state = "default_right"
@@ -124,7 +145,7 @@ class base_sprite(pygame.sprite.Sprite):
         )
         self.state = self.rest_state
         self.frame_counter += 1
-        if not self.frame_counter % 2:
+        if not self.frame_counter % 10:
            self.step += 1 
         self.passback = {}
         self.movement(0,0)
@@ -163,6 +184,10 @@ class player_sprite(physical_sprite):
    y = controls.height/2 - 35
    sensitivity = 3
    name = "player"
+   speed = 30
+   passback = {}
+   to_say = ''
+   to_say_cooldown = 0
 
    def movement(self,i,j):
         pass
@@ -183,23 +208,23 @@ class player_sprite(physical_sprite):
         self.position_log()
         if self.step >= len(self.states[self.state]):
            self.step = 0
+        for child in self.children:
+           controls.scrren.blit(child.state.get(self.state, "default"), self.x, self.y)
         controls.screen.blit(
-      #          pygame.transform.scale(
                    self.states[self.state][self.step], 
-      #             (self.width, self.height)
-      #             ),
                    (self.x, self.y),
         )
         self.state = self.rest_state
-        for action in ["left", "right", "down", "up"]:
+        for action in ["left", "right", "down", "up", "attack", "back"]:
             if controls.actions[action] and action not in ["attack", "back"]:
                 if self.states[action]:
                    self.state = action
                    self.state_map[action]()
             elif controls.actions[action] and action in ["attack", "back"]:
-                print(action)
+                if action == "back":
+                   self.to_yaml()
         self.frame_counter += 1
-        if not self.frame_counter % 4:
+        if not self.frame_counter % 10:
            self.step += 1 
         self.i = self.x 
         self.j = self.y 
