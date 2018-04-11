@@ -137,6 +137,7 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None):
            layer.update()
        sprites = sorted(sprites, None, lambda sprite: (sprite.rect.y, sprite.rect.x))
        rect_list = []
+       grid(screen, rect_list, 640, 480)
        for sprite in sprites:
            a = sprite.update()
            #pygame.draw.rect(screen, (0,0,255), sprite.rect) 
@@ -154,12 +155,8 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None):
                     blocking = sprite.collide(collision.rect) if sprite.collide(collision.rect) else blocking
                  group.add(sprite)
        text_queue = text.update(text_queue)
+       #grid(screen, rect_list, 640, 480)
        move = check_move(blocking)
-       #pygame.display.flip()
-       #for group in sprite_groups:
-       #   print pygame.sprite.groupcollide(sprite_groups[0], group, False, False)
-       #pygame.display.update(background_layers[0].image.get_rect())
-       #crt_tv(screen, rect_list, 640, 480)
        pygame.display.update(rect_list)
        if move:
           #screen.fill((randint(1,255), randint(1,255), randint(1,255)))
@@ -177,6 +174,15 @@ def crt_tv(screen, rect_list, width, height, flicker=40):
           
           rect_list.append(pygame.Rect(0, i * 4, 640, 1)) 
           
+def grid(screen, rect_list, width, height):
+       spacing = 37
+       
+       for j in xrange(0, height, spacing):
+          pygame.draw.aaline(screen, (0, 0, 0), (0,y % spacing + j), (width,y % spacing + j))
+          rect_list.append(pygame.Rect(0, j * spacing, width, 1)) 
+       for i in xrange(0, width, spacing):
+          pygame.draw.aaline(screen, (0, 0, 0), (x % spacing + i,9), (x % spacing + i, height))
+          rect_list.append(pygame.Rect(i * spacing, 0, height, 1)) 
 
 if __name__ == "__main__":
     main()
