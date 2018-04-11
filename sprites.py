@@ -2,12 +2,15 @@ from ruamel.yaml import YAML
 from random import choice
 import sys
 import controls
-from controls import pygame, log
+from controls import pygame, log 
 from time import sleep
 from pprint import pprint
+from pygame import gfxdraw
 
 class base_sprite(pygame.sprite.Sprite):
     name = "default"
+    move = 0
+    walk_duration = 0
     def __init__(
             self,
             width=34,
@@ -56,12 +59,18 @@ class base_sprite(pygame.sprite.Sprite):
     def collide(self, rect):
         if rect.x > self.rect.x:
            self.right()
+           self.current_move = self.right
         elif rect.x < self.rect.x:
            self.left()
+           self.current_move = self.left
         if rect.y < self.rect.y:
            self.up()
+           self.current_move = self.up
         elif rect.y > self.rect.y:
            self.down()
+           self.current_move = self.down
+        if self.move >= self.walk_duration * 0.8:
+           self.current_move = self.still
         return None
     
     def to_yaml(self):
@@ -102,6 +111,7 @@ class base_sprite(pygame.sprite.Sprite):
 
     def still(self):
         self.movement(0, 0)
+
     def log(self, message):
         log(__name__, message)
 
@@ -153,6 +163,9 @@ class base_sprite(pygame.sprite.Sprite):
 
 class physical_sprite(base_sprite):
     speed = 1
+    gradient = 1
+    def shadow(self):
+       gfxdraw.filled_ellipse(controls.screen, self.rect.midbottom[0], self.rect.midbottom[1], self.width/3, self.height/8, (10,10,10, 220) )
     
 class static_sprite(physical_sprite):
     speed = 0
@@ -174,10 +187,12 @@ class npc_sprite(physical_sprite):
         self.current_move = choice([self.up, self.down, self.left, self.right] + 10 * [self.still])
 
     def each_frame(self):
+        #self.shadow()
         if not self.move % self.walk_duration:
             self.choose_random_direction()
         self.current_move()    
         self.move += 1
+    
 
 class player_sprite(physical_sprite):
    x = controls.width/2 - 20
@@ -205,6 +220,7 @@ class player_sprite(physical_sprite):
         return collisions
         
    def update(self):
+        #self.shadow()
         self.position_log()
         if self.step >= len(self.states[self.state]):
            self.step = 0

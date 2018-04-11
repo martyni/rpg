@@ -7,6 +7,8 @@ from pprint import pprint
 from random import randint
 from math import pi
 from time import sleep
+from intro import intro
+intro()
 pygame.init()
 width, height = 640, 480
 screen=pygame.display.set_mode((width, height))
@@ -157,7 +159,7 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None):
        #for group in sprite_groups:
        #   print pygame.sprite.groupcollide(sprite_groups[0], group, False, False)
        #pygame.display.update(background_layers[0].image.get_rect())
-       crt_tv(screen, rect_list, 640, 480)
+       #crt_tv(screen, rect_list, 640, 480)
        pygame.display.update(rect_list)
        if move:
           #screen.fill((randint(1,255), randint(1,255), randint(1,255)))
