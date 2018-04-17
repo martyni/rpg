@@ -1,4 +1,4 @@
-import pygame
+
 import pygame.midi
 from pygame import event as ev
 from copy import deepcopy
@@ -17,6 +17,7 @@ blank_screen = pygame.Surface((width, height))
 blank_screen.fill((255,255,255))
 verbose = True
 speed = 3
+spacing = 32
 x = 0
 y = 0
 actions = {i: False for i in ["up", "down", "left", "right", "attack", "back"]}
@@ -58,6 +59,11 @@ def move(i,j):
   global y
   y += j
 
+def position_to_grid(i, j):
+   i -=  i % spacing - x % spacing
+   j -=  j % spacing - y % spacing
+   return [i,j]
+
 
 def up():
     move(0, speed)
@@ -77,21 +83,29 @@ def attack():
 def back():
     pass
 
+
 def main(background_layers=[], sprites=[], text=None, sprite_groups=None):        
    global screen
    global blank_screen
    text_queue = ["Hello Game", "How are you today?"]
    game=True
    clock = pygame.time.Clock()
+   rect_list = []
    while game:
        ev.pump()
        blocking = []
+       position = pygame.mouse.get_pos()
+       grid_position = position_to_grid(position[0], position[1])
+       r = pygame.Rect(grid_position[0], grid_position[1], spacing, spacing)
+       pygame.draw.rect(screen,(255,128,56), r, 0)
+       rect_list.append(r)
        for event in ev.get():
           if event.type==QUIT: 
               game = False
               pygame.display.quit()
               log(__name__, "exiting")
               exit(1)
+
           elif event.type==VIDEORESIZE:
               width, height = event.dict['size']
               screen=pygame.display.set_mode((width, height),DOUBLEBUF|RESIZABLE,12)
@@ -99,6 +113,7 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None):
               blank_screen.fill((255,255,255))
               [sprite.resize(width, height) for sprite in sprites]
               text.resize(width,height)
+
    
           elif event.type==KEYDOWN:
               if event.scancode in key_map["up"]:
@@ -136,7 +151,6 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None):
        for layer in background_layers:
            layer.update()
        sprites = sorted(sprites, None, lambda sprite: (sprite.rect.y, sprite.rect.x))
-       rect_list = []
        grid(screen, rect_list, 640, 480)
        for sprite in sprites:
            a = sprite.update()
@@ -157,6 +171,7 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None):
        text_queue = text.update(text_queue)
        #grid(screen, rect_list, 640, 480)
        move = check_move(blocking)
+       #crt_tv(screen, rect_list, 640, 480) 
        pygame.display.update(rect_list)
        if move:
           #screen.fill((randint(1,255), randint(1,255), randint(1,255)))
@@ -175,7 +190,6 @@ def crt_tv(screen, rect_list, width, height, flicker=40):
           rect_list.append(pygame.Rect(0, i * 4, 640, 1)) 
           
 def grid(screen, rect_list, width, height):
-       spacing = 37
        
        for j in xrange(0, height, spacing):
           pygame.draw.aaline(screen, (0, 0, 0), (0,y % spacing + j), (width,y % spacing + j))

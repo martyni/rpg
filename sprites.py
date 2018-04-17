@@ -6,6 +6,7 @@ from controls import pygame, log
 from time import sleep
 from pprint import pprint
 from pygame import gfxdraw
+from time import sleep
 
 class base_sprite(pygame.sprite.Sprite):
     name = "default"
@@ -159,6 +160,8 @@ class base_sprite(pygame.sprite.Sprite):
            self.step += 1 
         self.passback = {}
         self.movement(0,0)
+        #pygame.display.flip()
+        #sleep(0.5)
         return self.passback
 
 class physical_sprite(base_sprite):
