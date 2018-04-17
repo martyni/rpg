@@ -84,13 +84,14 @@ def back():
     pass
 
 
-def main(background_layers=[], sprites=[], text=None, sprite_groups=None):        
+def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=None, base_sprite=None): 
    global screen
    global blank_screen
    text_queue = ["Hello Game", "How are you today?"]
    game=True
    clock = pygame.time.Clock()
    rect_list = []
+   
    while game:
        ev.pump()
        blocking = []
@@ -114,7 +115,12 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None):
               [sprite.resize(width, height) for sprite in sprites]
               text.resize(width,height)
 
-   
+          elif event.type==MOUSEBUTTONDOWN:
+              new_tile = base_sprite(**tiles[0])
+              new_tile.i = int(grid_position[0] - x)
+              new_tile.j = int(grid_position[1] - y)
+              background_layers.append(new_tile)
+
           elif event.type==KEYDOWN:
               if event.scancode in key_map["up"]:
                   ev.post(ev.Event(20, {"up": True})) 
@@ -151,7 +157,7 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None):
        for layer in background_layers:
            layer.update()
        sprites = sorted(sprites, None, lambda sprite: (sprite.rect.y, sprite.rect.x))
-       grid(screen, rect_list, 640, 480)
+       #grid(screen, rect_list, 640, 480)
        for sprite in sprites:
            a = sprite.update()
            #pygame.draw.rect(screen, (0,0,255), sprite.rect) 
@@ -179,7 +185,14 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None):
        screen.fill((250,250,250,0))
        #pygame.display.update(rect_list)
        clock.tick(40)
-       pygame.display.set_caption(str(clock.get_fps())) 
+       game_info = "mouse: {m_x} , {m_y}, pos: {x}, {y} fps: {fps}".format(
+          m_x=r.x,
+          m_y=r.y,
+          x=x,
+          y=y,
+          fps=clock.get_fps()
+       )
+       pygame.display.set_caption(game_info)
 
 
 

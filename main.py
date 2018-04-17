@@ -2,7 +2,7 @@ import controls
 from controls import pygame, log
 from sprites import base_sprite, player_sprite, npc_sprite, static_sprite
 from text import base_text
-from load import levels
+from load import levels, tiles
 from sprite_groups import main_physical_group
 pc = player_sprite(
         34, 
@@ -47,9 +47,25 @@ pc = player_sprite(
         )
 a_text = base_text()
 background = base_sprite(**levels['l1'].settings)
+game_tiles = []
+for tile in tiles:
+   game_tiles.append({
+      "width": 32,
+      "height": 32,
+      "i": 0,
+      "j": 0,
+      "states":{
+         "default": tiles[tile]
+      }
+   })
 level_sprites = [npc_sprite(**child.settings) for child in levels['l1'].children['npc']]
 static_sprites = [static_sprite(**child.settings) for child in levels['l1'].children['static']]
 level_sprites.append(pc)        
 [main_physical_group.add(sprite) for sprite in level_sprites + static_sprites]
-controls.main(background_layers=[background], sprites=level_sprites + static_sprites, text=a_text, sprite_groups=[main_physical_group])
+controls.main(background_layers=[background], 
+   sprites=level_sprites + static_sprites, 
+   text=a_text, 
+   sprite_groups=[main_physical_group], 
+   tiles=game_tiles,
+   base_sprite=base_sprite)
 exit(1)

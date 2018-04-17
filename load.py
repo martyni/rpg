@@ -54,6 +54,7 @@ class Base(object):
                     self.settings.update(config)
                     self.settings['path'] = self.path
 
+
 for level in levels:
     level_key = '/'.join(['assets', level] )
     dirs = assets[level_key][0]
@@ -81,5 +82,16 @@ for level in levels:
              levels[level].children[dire].append(Base(child_level, files, dirs))
           except:
              levels[level].children[dire] = [Base(child_level, files, dirs)]
+tile_list = [ image for image in [file for file in os.walk('assets/images/')][0][2] if 'tile' in image]
 
+tiles = {}
+for tile in tile_list:
+   _, name, index = tile.split('_')
+   index = int(index.split('.')[0])
+   if tiles.get(name):
+      tiles[name].append('assets/images/' + tile)
+   else:
+      tiles[name] = ['assets/images/' + tile] 
+   print name
 
+print tiles
