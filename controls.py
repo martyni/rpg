@@ -1,5 +1,5 @@
-
 import pygame.midi
+import yaml
 from pygame import event as ev
 from copy import deepcopy
 from pygame.locals import *
@@ -84,6 +84,15 @@ def back():
     pass
 
 
+def load_background(file):
+   with open(file, 'r') as background:
+      raw_f = background.read()
+   return yaml.load(raw_f)
+
+def save_background(file, tile_list):
+   with open(file, 'w') as background:
+      raw_f = background.write(yaml.dump(tile_list))
+
 def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=None, base_sprite=None): 
    global screen
    global blank_screen
@@ -91,7 +100,12 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=
    game=True
    clock = pygame.time.Clock()
    rect_list = []
-   
+   current_tile = 0  
+   try:
+      current_background_dump = load_background('level.yml')
+   except:
+      current_background_dump = []
+      print 'load failed'
    while game:
        ev.pump()
        blocking = []
@@ -100,6 +114,7 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=
        r = pygame.Rect(grid_position[0], grid_position[1], spacing, spacing)
        pygame.draw.rect(screen,(255,128,56), r, 0)
        rect_list.append(r)
+       current_tile=0
        for event in ev.get():
           if event.type==QUIT: 
               game = False
@@ -116,10 +131,20 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=
               text.resize(width,height)
 
           elif event.type==MOUSEBUTTONDOWN:
-              new_tile = base_sprite(**tiles[0])
+              states_copy = {}
+              for state in tiles[current_tile]['states']:
+                 states_copy[state] = list(tiles[current_tile]['states'][state])
+              new_tile = base_sprite(**tiles[current_tile])
               new_tile.i = int(grid_position[0] - x)
               new_tile.j = int(grid_position[1] - y)
               background_layers.append(new_tile)
+              tiles[current_tile]['states'] = states_copy
+              tile_copy = dict(tiles[current_tile])
+              tile_copy["i"] = int(grid_position[0] - x)
+              tile_copy["j"] = int(grid_position[1] - y)
+              print tile_copy
+              current_background_dump.append(deepcopy(tile_copy))
+              save_background("level.yml",current_background_dump) 
 
           elif event.type==KEYDOWN:
               if event.scancode in key_map["up"]:

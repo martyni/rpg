@@ -1,0 +1,1170 @@
+- height: 32
+  i: 384
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 352
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 384
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 416
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 352
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 352
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 352
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 352
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 384
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 384
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 416
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 416
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 416
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 416
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 384
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 480
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 512
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 544
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 576
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 608
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 640
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 672
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 704
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 480
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 512
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 544
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 608
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 576
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 640
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 672
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 704
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 192
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 192
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 192
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 192
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 192
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 480
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 480
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 480
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 512
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 512
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 512
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 544
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 544
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 544
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 576
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 576
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 576
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 608
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 640
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 672
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 704
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 704
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 672
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 640
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 608
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 608
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 640
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 704
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 672
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 416
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 384
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 352
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 192
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 192
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 192
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 192
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 192
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 352
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 384
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 416
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 416
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 384
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 352
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 352
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 384
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 416
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 416
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 384
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 352
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 480
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 512
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 544
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 576
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 576
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 512
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 480
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 544
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 544
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 512
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 480
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 480
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 480
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 512
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 512
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 544
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 544
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 576
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 576
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 576
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 576
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 608
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 640
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 672
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 704
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 704
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 672
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 640
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 608
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 608
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 640
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 672
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 704
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 704
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 672
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 640
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 608
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 608
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 640
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 672
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 704
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 192
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 224
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 288
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 352
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 384
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 416
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 448
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 448
+  j: 352
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 448
+  j: 384
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 448
+  j: 416
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 448
+  j: 448
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 448
+  j: 480
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 448
+  j: 288
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 448
+  j: 256
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 448
+  j: 224
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 448
+  j: 192
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 448
+  j: 160
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 704
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 672
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 640
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 608
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 576
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 544
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 512
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 512
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- height: 32
+  i: 480
+  j: 320
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32

@@ -1,4 +1,5 @@
 import controls
+import yaml
 from controls import pygame, log
 from sprites import base_sprite, player_sprite, npc_sprite, static_sprite
 from text import base_text
@@ -47,6 +48,10 @@ pc = player_sprite(
         )
 a_text = base_text()
 background = base_sprite(**levels['l1'].settings)
+with open('level.yml','r') as bg_tiles:
+   tile_list = yaml.load(bg_tiles.read())
+   
+background_layers = [base_sprite(**t) for t in tile_list]
 game_tiles = []
 for tile in tiles:
    game_tiles.append({
@@ -62,7 +67,7 @@ level_sprites = [npc_sprite(**child.settings) for child in levels['l1'].children
 static_sprites = [static_sprite(**child.settings) for child in levels['l1'].children['static']]
 level_sprites.append(pc)        
 [main_physical_group.add(sprite) for sprite in level_sprites + static_sprites]
-controls.main(background_layers=[background], 
+controls.main(background_layers=background_layers, 
    sprites=level_sprites + static_sprites, 
    text=a_text, 
    sprite_groups=[main_physical_group], 
