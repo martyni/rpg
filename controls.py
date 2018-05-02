@@ -93,6 +93,14 @@ def save_background(file, tile_list):
    with open(file, 'w') as background:
       raw_f = background.write(yaml.dump(tile_list))
 
+def scroll(key, list, direction=1):
+   key += direction
+   if key >= len(list) - 1:
+      key = 0
+   elif key < 0:
+      key = len(list) -1
+   return key
+
 def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=None, base_sprite=None): 
    global screen
    global blank_screen
@@ -100,12 +108,12 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=
    game=True
    clock = pygame.time.Clock()
    rect_list = []
-   current_tile = 0  
    try:
       current_background_dump = load_background('level.yml')
    except:
       current_background_dump = []
       print 'load failed'
+   current_tile = 0
    while game:
        ev.pump()
        blocking = []
@@ -114,10 +122,10 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=
        r = pygame.Rect(grid_position[0], grid_position[1], spacing, spacing)
        pygame.draw.rect(screen,(255,128,56), r, 0)
        rect_list.append(r)
-       current_tile=0
        for event in ev.get():
           if event.type==QUIT: 
               game = False
+              save_background("level.yml",current_background_dump) 
               pygame.display.quit()
               log(__name__, "exiting")
               exit(1)
@@ -131,20 +139,24 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=
               text.resize(width,height)
 
           elif event.type==MOUSEBUTTONDOWN:
-              states_copy = {}
-              for state in tiles[current_tile]['states']:
-                 states_copy[state] = list(tiles[current_tile]['states'][state])
-              new_tile = base_sprite(**tiles[current_tile])
-              new_tile.i = int(grid_position[0] - x)
-              new_tile.j = int(grid_position[1] - y)
-              background_layers.append(new_tile)
-              tiles[current_tile]['states'] = states_copy
-              tile_copy = dict(tiles[current_tile])
-              tile_copy["i"] = int(grid_position[0] - x)
-              tile_copy["j"] = int(grid_position[1] - y)
-              print tile_copy
-              current_background_dump.append(deepcopy(tile_copy))
-              save_background("level.yml",current_background_dump) 
+              if event.button == 4:
+                 current_tile = scroll(current_tile, tiles)
+              elif event.button == 5:
+                 current_tile = scroll(current_tile, tiles, -1)
+              else:
+                 states_copy = {}
+                 for state in tiles[current_tile]['states']:
+                    states_copy[state] = list(tiles[current_tile]['states'][state])
+                 new_tile = base_sprite(**tiles[current_tile])
+                 new_tile.i = int(grid_position[0] - x)
+                 new_tile.j = int(grid_position[1] - y)
+                 background_layers.append(new_tile)
+                 tiles[current_tile]['states'] = states_copy
+                 tile_copy = dict(tiles[current_tile])
+                 tile_copy["i"] = int(grid_position[0] - x)
+                 tile_copy["j"] = int(grid_position[1] - y)
+                 print tile_copy
+                 current_background_dump.append(deepcopy(tile_copy))
 
           elif event.type==KEYDOWN:
               if event.scancode in key_map["up"]:
@@ -210,12 +222,13 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=
        screen.fill((250,250,250,0))
        #pygame.display.update(rect_list)
        clock.tick(40)
-       game_info = "mouse: {m_x} , {m_y}, pos: {x}, {y} fps: {fps}".format(
+       game_info = "mouse: {m_x} , {m_y}, pos: {x}, {y} fps: {fps}, tile: {tile}".format(
           m_x=r.x,
           m_y=r.y,
           x=x,
           y=y,
-          fps=clock.get_fps()
+          fps=clock.get_fps(),
+          tile=tiles[current_tile].get("name")
        )
        pygame.display.set_caption(game_info)
 
@@ -228,7 +241,6 @@ def crt_tv(screen, rect_list, width, height, flicker=40):
           rect_list.append(pygame.Rect(0, i * 4, 640, 1)) 
           
 def grid(screen, rect_list, width, height):
-       
        for j in xrange(0, height, spacing):
           pygame.draw.aaline(screen, (0, 0, 0), (0,y % spacing + j), (width,y % spacing + j))
           rect_list.append(pygame.Rect(0, j * spacing, width, 1)) 

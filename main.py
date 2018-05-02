@@ -59,6 +59,7 @@ for tile in tiles:
       "height": 32,
       "i": 0,
       "j": 0,
+      "name": tile,
       "states":{
          "default": tiles[tile]
       }
