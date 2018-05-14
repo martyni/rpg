@@ -6,84 +6,86 @@ from text import base_text
 from load import levels, tiles
 from sprite_groups import main_physical_group, pc_physical_group
 pc = player_sprite(
-        34, 
-        64, 
-        i=controls.width/2 - 20,
-        j=controls.height/2 - 35,
-        states={
-            "default":
-                [ 
-                "assets/images/Iandalara_base0{}.bmp".format(4)
-                ] * 3 +
-                [
-                "assets/images/Iandalara_base0{}.bmp".format(i) for i in range(3)
-                ],
+    34,
+    64,
+    i=controls.width/2 - 20,
+    j=controls.height/2 - 35,
+    states={
+        "default":
+        [
+            "assets/images/Iandalara_base0{}.bmp".format(4)
+        ] * 3 +
+        [
+            "assets/images/Iandalara_base0{}.bmp".format(i) for i in range(3)
+        ],
             "default_up":
-                [ 
-                "assets/images/Iandalara_base_up0{}.bmp".format(4)
-                ] * 3 +
                 [
-                "assets/images/Iandalara_base_up0{}.bmp".format(i) for i in range(3)
-                ],
+                    "assets/images/Iandalara_base_up0{}.bmp".format(4)
+        ] * 3 +
+                [
+                    "assets/images/Iandalara_base_up0{}.bmp".format(i) for i in range(3)
+        ],
             "default_right": [
                 "assets/images/Iandalara_right00.bmp"
-                ],
-            "default_left": [
+        ],
+        "default_left": [
                 "assets/images/Iandalara_left00.bmp"
-                ],
-            "up": [
+        ],
+        "up": [
                 "assets/images/Iandalara_up0{}.bmp".format(i) for i in range(4)
-                ],
-            "down": [
+        ],
+        "down": [
                 "assets/images/Iandalara_down0{}.bmp".format(i) for i in range(4)
-                ],
-            "left": [
+        ],
+        "left": [
                 "assets/images/Iandalara_left0{}.bmp".format(i) for i in range(4)
-                ],
-            "right": [
+        ],
+        "right": [
                 "assets/images/Iandalara_right0{}.bmp".format(i) for i in range(4)
-                ],
-            },
+        ],
+    },
 
-        )
+)
 a_text = base_text()
 background = base_sprite(**levels['l1'].settings)
-with open('level.yml','r') as bg_tiles:
-   tile_list = yaml.load(bg_tiles.read())
-try:   
-   background_layers = [base_sprite(**t) for t in tile_list]
+with open('level.yml', 'r') as bg_tiles:
+    tile_list = yaml.load(bg_tiles.read())
+try:
+    background_layers = [base_sprite(**t) for t in tile_list]
 except TypeError:
-   background_layers = []
+    background_layers = []
 for layer in background_layers:
-   if "solid" in layer.name:
-      main_physical_group.add(layer)
-   else:
-      print layer.name
-      print layer.states["default"][0]
+    if "solid" in layer.name:
+        main_physical_group.add(layer)
+    else:
+        print layer.name
+        print layer.states["default"][0]
 
 game_tiles = []
 for tile in tiles:
-   game_tiles.append({
-      "width": 32,
-      "height": 32,
-      "i": 0,
-      "j": 0,
-      "name": tile,
-      "states":{
-         "default": tiles[tile]
-      }
-   })
-level_sprites = [npc_sprite(**child.settings) for child in levels['l1'].children['npc']]
-static_sprites = [static_sprite(**child.settings) for child in levels['l1'].children['static']]
-level_sprites.append(pc)        
+    game_tiles.append({
+        "width": 32,
+        "height": 32,
+        "i": 0,
+        "j": 0,
+        "name": tile,
+        "states": {
+            "default": tiles[tile]
+        }
+    })
+level_sprites = [npc_sprite(**child.settings)
+                 for child in levels['l1'].children['npc']]
+static_sprites = [static_sprite(**child.settings)
+                  for child in levels['l1'].children['static']]
+level_sprites.append(pc)
 
 [main_physical_group.add(sprite) for sprite in level_sprites + static_sprites]
 pc_physical_group.add(pc)
-controls.main(background_layers=background_layers, 
-   sprites=level_sprites + static_sprites, 
-   text=a_text, 
-   sprite_groups=[main_physical_group, pc_physical_group], 
-   tiles=game_tiles,
-   base_sprite=base_sprite,
-   static_sprite=static_sprite)
+controls.main(background_layers=background_layers,
+              sprites=level_sprites + static_sprites,
+              text=a_text,
+              sprite_groups=[main_physical_group, pc_physical_group],
+              tiles=game_tiles,
+              base_sprite=base_sprite,
+              static_sprite=static_sprite)
 exit(1)
