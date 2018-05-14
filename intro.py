@@ -15,7 +15,7 @@ def draw_connected_lines(position_list, event):
 
 def intro():
    size = width, height = 640, 480
-   screen=pygame.display.set_mode((width, height))
+   screen=pygame.display.set_mode((width, height) )
    
    blank_screen = pygame.Surface((width, height))
    blank_screen.fill((255,255,255))

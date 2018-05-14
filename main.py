@@ -4,7 +4,7 @@ from controls import pygame, log
 from sprites import base_sprite, player_sprite, npc_sprite, static_sprite
 from text import base_text
 from load import levels, tiles
-from sprite_groups import main_physical_group
+from sprite_groups import main_physical_group, pc_physical_group
 pc = player_sprite(
         34, 
         64, 
@@ -50,8 +50,17 @@ a_text = base_text()
 background = base_sprite(**levels['l1'].settings)
 with open('level.yml','r') as bg_tiles:
    tile_list = yaml.load(bg_tiles.read())
-   
-background_layers = [base_sprite(**t) for t in tile_list]
+try:   
+   background_layers = [base_sprite(**t) for t in tile_list]
+except TypeError:
+   background_layers = []
+for layer in background_layers:
+   if "solid" in layer.name:
+      main_physical_group.add(layer)
+   else:
+      print layer.name
+      print layer.states["default"][0]
+
 game_tiles = []
 for tile in tiles:
    game_tiles.append({
@@ -67,11 +76,14 @@ for tile in tiles:
 level_sprites = [npc_sprite(**child.settings) for child in levels['l1'].children['npc']]
 static_sprites = [static_sprite(**child.settings) for child in levels['l1'].children['static']]
 level_sprites.append(pc)        
+
 [main_physical_group.add(sprite) for sprite in level_sprites + static_sprites]
+pc_physical_group.add(pc)
 controls.main(background_layers=background_layers, 
    sprites=level_sprites + static_sprites, 
    text=a_text, 
-   sprite_groups=[main_physical_group], 
+   sprite_groups=[main_physical_group, pc_physical_group], 
    tiles=game_tiles,
-   base_sprite=base_sprite)
+   base_sprite=base_sprite,
+   static_sprite=static_sprite)
 exit(1)

@@ -2,6 +2,7 @@ from ruamel.yaml import YAML
 from random import choice
 import sys
 import controls
+from copy import deepcopy
 from controls import pygame, log 
 from time import sleep
 from pprint import pprint
@@ -9,7 +10,6 @@ from pygame import gfxdraw
 from time import sleep
 
 class base_sprite(pygame.sprite.Sprite):
-    name = "default"
     move = 0
     walk_duration = 0
     def __init__(
@@ -22,6 +22,7 @@ class base_sprite(pygame.sprite.Sprite):
             path='assets/images/',
             colide=["Ouch! Don't bang into me!", "Hello, how are you today?", "Inside, I'm dying"],
             message=choice(["I like you"]),
+            name = "default",
             **kwargs
             ):
         pygame.sprite.Sprite.__init__(self)
@@ -40,6 +41,8 @@ class base_sprite(pygame.sprite.Sprite):
         self.state_generator()
         self.children = []
         self.rest_state = "default"
+        self.frame_wait = 10
+        self.name = name
         
         self.state_map ={
            "up": self.up,
@@ -51,25 +54,25 @@ class base_sprite(pygame.sprite.Sprite):
                 self.states[self.state][self.step],
                 (self.width, self.height)
                 ).copy()
-        self.rect = pygame.Rect(self.i + 3, self.j + 3, self.width -6, self.height -6)
+        self.rect = pygame.Rect(self.i , self.j, self.width, self.height)
 
     def movement(self,i,j):
         self.rect.x = self.i + controls.x
         self.rect.y = self.j + controls.y
     
     def collide(self, rect):
+        if rect.x < self.rect.x:
+           self.left()
+           self.current_move = self.left
         if rect.x > self.rect.x:
            self.right()
            self.current_move = self.right
-        elif rect.x < self.rect.x:
-           self.left()
-           self.current_move = self.left
+        if rect.y > self.rect.y:
+           self.down()
+           self.current_move = self.down
         if rect.y < self.rect.y:
            self.up()
            self.current_move = self.up
-        elif rect.y > self.rect.y:
-           self.down()
-           self.current_move = self.down
         if self.move >= self.walk_duration * 0.8:
            self.current_move = self.still
         return None
@@ -156,7 +159,7 @@ class base_sprite(pygame.sprite.Sprite):
         )
         self.state = self.rest_state
         self.frame_counter += 1
-        if not self.frame_counter % 10:
+        if not self.frame_counter % self.frame_wait:
            self.step += 1 
         self.passback = {}
         self.movement(0,0)
@@ -206,29 +209,39 @@ class player_sprite(physical_sprite):
    passback = {}
    to_say = ''
    to_say_cooldown = 0
+   collisions = [False, False, False, False]
 
    def movement(self,i,j):
         pass
 
    def collide(self, rect):
-        collisions = [False, False]
-        if rect.x > self.rect.x and rect.collidepoint(self.rect.midright):
-           collisions[0] ="right"
-        elif rect.x < self.rect.x and rect.collidepoint(self.rect.midleft):
-           collisions[0] ="left"
-        if rect.y < self.rect.y and rect.collidepoint(self.rect.midtop):
-           collisions[1] = "up"
-        elif rect.y > self.rect.y and rect.collidepoint(self.rect.midbottom):
-           collisions[1] = "down"
-        return collisions
+        small_rect = deepcopy(self.rect)
+        self.char_x, self.char_y = deepcopy(self.rect.center)
+        col_x, col_y = rect.center
+        shoulders = list(self.rect.midtop)
+        shoulders[1] -= 31
+        if col_x < self.char_x  and (rect.collidepoint(self.rect.midleft) or rect.collidepoint(self.rect.bottomleft)):
+           self.collisions[0] ="left"
+        if col_x > self.char_x  and  (rect.collidepoint(self.rect.midright) or rect.collidepoint(self.rect.bottomright)):
+           self.collisions[1] ="right"
+        if col_y > self.char_y  and  (rect.collidepoint(self.rect.midbottom)):
+           self.collisions[2] = "down"
+        if col_y < self.char_y  and (rect.collidepoint(self.rect.midtop)):
+           print self.rect.midtop
+           print self.rect.center
+           print self.rect.midbottom
+           print col_x, col_y
+           self.collisions[3] = "up"
+        return self.collisions
         
    def update(self):
+        self.collisions = [False, False, False, False]
         #self.shadow()
         self.position_log()
         if self.step >= len(self.states[self.state]):
            self.step = 0
         for child in self.children:
-           controls.scrren.blit(child.state.get(self.state, "default"), self.x, self.y)
+           controls.screen.blit(child.state.get(self.state, "default"), self.x, self.y)
         controls.screen.blit(
                    self.states[self.state][self.step], 
                    (self.x, self.y),
@@ -243,7 +256,7 @@ class player_sprite(physical_sprite):
                 if action == "back":
                    self.to_yaml()
         self.frame_counter += 1
-        if not self.frame_counter % 10:
+        if not self.frame_counter % self.frame_wait:
            self.step += 1 
         self.i = self.x 
         self.j = self.y 

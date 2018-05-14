@@ -1,5 +1,6 @@
 import pygame.midi
 import yaml
+import os
 from pygame import event as ev
 from copy import deepcopy
 from pygame.locals import *
@@ -8,10 +9,12 @@ from random import randint
 from math import pi
 from time import sleep
 from intro import intro
+('X11', 'dga', 'ggi','vgl','aalib','directfb', 'fbcon', 'svgalib')
+os.environ["SDL_FBDEV"] = "dave"
 intro()
 pygame.init()
 width, height = 640, 480
-screen=pygame.display.set_mode((width, height))
+screen=pygame.display.set_mode((width,height))
 
 blank_screen = pygame.Surface((width, height))
 blank_screen.fill((255,255,255))
@@ -101,7 +104,7 @@ def scroll(key, list, direction=1):
       key = len(list) -1
    return key
 
-def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=None, base_sprite=None): 
+def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=None, base_sprite=None, static_sprite=None): 
    global screen
    global blank_screen
    text_queue = ["Hello Game", "How are you today?"]
@@ -110,6 +113,8 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=
    rect_list = []
    try:
       current_background_dump = load_background('level.yml')
+      if current_background_dump is None:
+         current_background_dump = []
    except:
       current_background_dump = []
       print 'load failed'
@@ -120,7 +125,6 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=
        position = pygame.mouse.get_pos()
        grid_position = position_to_grid(position[0], position[1])
        r = pygame.Rect(grid_position[0], grid_position[1], spacing, spacing)
-       pygame.draw.rect(screen,(255,128,56), r, 0)
        rect_list.append(r)
        for event in ev.get():
           if event.type==QUIT: 
@@ -208,13 +212,18 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=
                  group.remove(sprite) 
                  collision = pygame.sprite.spritecollideany(sprite, group)
                  if collision:
-                    #pygame.draw.rect(screen, (255,0,0,40), collision.rect) 
-                    blocking = sprite.collide(collision.rect) if sprite.collide(collision.rect) else blocking
+                    if sprite.collide(collision.rect):
+                       for collision in pygame.sprite.groupcollide(sprite_groups[1], sprite_groups[0], False, False)[sprite]: 
+                          #pygame.draw.rect(screen, (255,0,0,40), collision.rect) 
+                          pygame.draw.line(screen, (255,128,40), sprite.rect.center, collision.rect.center, 5)
+                          blocking += sprite.collide(collision.rect)
+                          print blocking
                  group.add(sprite)
        text_queue = text.update(text_queue)
        #grid(screen, rect_list, 640, 480)
        move = check_move(blocking)
        #crt_tv(screen, rect_list, 640, 480) 
+       pygame.draw.rect(screen,(255,128,56), r, 0)
        pygame.display.update(rect_list)
        if move:
           #screen.fill((randint(1,255), randint(1,255), randint(1,255)))
