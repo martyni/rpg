@@ -1,11 +1,17 @@
+"""This module handles the beginning screen of the game"""
+
 import sys
-import pygame
-from pygame.locals import *
 from random import choice
+import pygame
+# pylint: disable=no-name-in-module
+# Despite these variables being defined some this error is thrown
+from pygame.locals import MOUSEBUTTONDOWN, KEYDOWN
+# pylint: disable=no-member, too-many-function-args
+# Guessing this will have to go everywhere pygame.init is
 pygame.init()
 
-
-def draw_connected_lines(position_list, event):
+def draw_connected_lines(position_list, event, screen):
+    """ Function that helped me create the text initially """
     if event.type == MOUSEBUTTONDOWN:
         position_list.append(event.pos)
     if len(position_list) > 1:
@@ -15,14 +21,12 @@ def draw_connected_lines(position_list, event):
     return position_list
 
 
-def intro():
+def splash_screen():
+    """ Splash screen at intro waiting for input"""
     size = width, height = 640, 480
     screen = pygame.display.set_mode((width, height))
-
     blank_screen = pygame.Surface((width, height))
     blank_screen.fill((255, 255, 255))
-
-    speed = [2, 2]
     black = 0, 0, 0
     intro1 = pygame.transform.scale(pygame.image.load(
         "assets/images/Title01.bmp").convert_alpha(), size)
@@ -31,7 +35,6 @@ def intro():
     loading = pygame.transform.scale(pygame.image.load(
         "assets/images/Loading01.bmp").convert_alpha(), size)
     intro = True
-    position_list = []
     counter = 0
     while intro:
         if not counter % 10:
@@ -51,4 +54,4 @@ def intro():
 
 
 if __name__ == '__main__':
-    intro()
+    splash_screen()

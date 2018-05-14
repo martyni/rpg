@@ -8,10 +8,10 @@ from pprint import pprint
 from random import randint
 from math import pi
 from time import sleep
-from intro import intro
+from introduction import splash_screen
 ('X11', 'dga', 'ggi', 'vgl', 'aalib', 'directfb', 'fbcon', 'svgalib')
 os.environ["SDL_FBDEV"] = "dave"
-intro()
+splash_screen()
 pygame.init()
 width, height = 640, 480
 screen = pygame.display.set_mode((width, height))
