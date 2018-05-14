@@ -2,7 +2,7 @@ import controls
 import yaml
 from controls import pygame, log
 from sprites import base_sprite, player_sprite, npc_sprite, static_sprite
-from text import base_text
+from text import BaseText
 from load import levels, tiles
 from sprite_groups import main_physical_group, pc_physical_group
 pc = player_sprite(
@@ -46,7 +46,7 @@ pc = player_sprite(
     },
 
 )
-a_text = base_text()
+a_text = BaseText()
 background = base_sprite(**levels['l1'].settings)
 with open('level.yml', 'r') as bg_tiles:
     tile_list = yaml.load(bg_tiles.read())

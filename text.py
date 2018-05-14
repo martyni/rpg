@@ -1,13 +1,18 @@
+"""This is for handling Text to display in the game"""
 import controls
 from controls import pygame, log
 pygame.font.init()
 
 
-class base_text(pygame.sprite.Sprite):
+class BaseText(pygame.sprite.Sprite):
+    """This Class is to handle the text sprites"""
+
+    # pylint: disable=too-many-instance-attributes
+    # need those bits
     def __init__(self,
                  text='abcdefg',
                  **kwargs
-                 ):
+                ):
         self.font = pygame.font.SysFont('liberationserif', 30)
         self.text = text
         self.i = 0
@@ -19,29 +24,48 @@ class base_text(pygame.sprite.Sprite):
         self.resize(self.width, self.height)
         self.cooldown = 0
         self.state = ''
+        self.kwargs = kwargs
 
     def resize(self, width, height):
+        """Resize text so that it fits on the screen"""
         self.width, self.height = width, height
         self.text_screen = self.font.render(self.text, True, (0, 0, 0, 0))
+        # pylint: disable=too-many-function-args
+        # this is fined
         self.background = pygame.Surface(
             (width, int(height/9))).convert_alpha()
         self.background.fill((255, 255, 255, 200))
 
     def update(self, text_queue):
+        """
+        Runs once a frame, checks if theres anything in the
+        text_queue and sets the self.write flag
+        """
         try:
             self.text = text_queue[0]
             self.write = True
-        except:
+        except IndexError:
             self.write = False
 
         if self.write:
             self.resize(self.width, self.height)
             controls.screen.blit(
                 self.background, [0, self.height - int(self.height / 9)])
-            pygame.draw.rect(controls.screen, (0, 0, 0, 0), [
-                             0, self.height - int(self.height / 9), self.width, int(self.height/9)], self.border_width)
+            pygame.draw.rect(
+                controls.screen,
+                (0, 0, 0, 0),
+                [
+                    0,
+                    self.height - int(self.height / 9),
+                    self.width,
+                    int(self.height/9)
+                ],
+                self.border_width
+            )
             controls.screen.blit(self.text_screen, [
-                                 self.border_width, self.height - int(self.height / 9)])
+                self.border_width,
+                self.height - int(self.height / 9)
+            ])
         for action in controls.actions:
             if controls.actions[action]:
                 self.state = action
@@ -50,8 +74,8 @@ class base_text(pygame.sprite.Sprite):
                     if not self.cooldown:
                         text_queue.pop(0)
                         self.cooldown = 30
-                except:
-                    pass
+                except IndexError:
+                    log(self.__name__, 'out of text')
         if self.cooldown > 0:
             self.cooldown -= 1
         return text_queue
