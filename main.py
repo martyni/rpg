@@ -4,7 +4,7 @@ from controls import pygame, log
 from sprites import base_sprite, player_sprite, npc_sprite, static_sprite
 from text import BaseText
 from load import levels, tiles
-from sprite_groups import main_physical_group, pc_physical_group
+from sprite_groups import MAIN_PHYSICAL_GROUP, PC_PHYSICAL_GROUP
 pc = player_sprite(
     34,
     64,
@@ -56,7 +56,7 @@ except TypeError:
     background_layers = []
 for layer in background_layers:
     if "solid" in layer.name:
-        main_physical_group.add(layer)
+        MAIN_PHYSICAL_GROUP.add(layer)
     else:
         print layer.name
         print layer.states["default"][0]
@@ -79,12 +79,12 @@ static_sprites = [static_sprite(**child.settings)
                   for child in levels['l1'].children['static']]
 level_sprites.append(pc)
 
-[main_physical_group.add(sprite) for sprite in level_sprites + static_sprites]
-pc_physical_group.add(pc)
+[MAIN_PHYSICAL_GROUP.add(sprite) for sprite in level_sprites + static_sprites]
+PC_PHYSICAL_GROUP.add(pc)
 controls.main(background_layers=background_layers,
               sprites=level_sprites + static_sprites,
               text=a_text,
-              sprite_groups=[main_physical_group, pc_physical_group],
+              sprite_groups=[MAIN_PHYSICAL_GROUP, PC_PHYSICAL_GROUP],
               tiles=game_tiles,
               base_sprite=base_sprite,
               static_sprite=static_sprite)
