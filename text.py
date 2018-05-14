@@ -15,6 +15,7 @@ class BaseText(pygame.sprite.Sprite):
                 ):
         self.font = pygame.font.SysFont('liberationserif', 30)
         self.text = text
+        self.__name__ = "text"
         self.i = 0
         self.j = 10000000000
         self.width = controls.width

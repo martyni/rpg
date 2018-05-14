@@ -115,7 +115,7 @@ def scroll(key, list, direction=1):
     return key
 
 
-def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=None, base_sprite=None, static_sprite=None):
+def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=None, BaseSprite=None, StaticSprite=None):
     global screen
     global blank_screen
     text_queue = ["Hello Game", "How are you today?"]
@@ -164,7 +164,7 @@ def main(background_layers=[], sprites=[], text=None, sprite_groups=None, tiles=
                     for state in tiles[current_tile]['states']:
                         states_copy[state] = list(
                             tiles[current_tile]['states'][state])
-                    new_tile = base_sprite(**tiles[current_tile])
+                    new_tile = BaseSprite(**tiles[current_tile])
                     new_tile.i = int(grid_position[0] - x)
                     new_tile.j = int(grid_position[1] - y)
                     background_layers.append(new_tile)

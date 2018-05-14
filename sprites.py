@@ -1,16 +1,24 @@
-from ruamel.yaml import YAML
-from random import choice
+""" Class for dealing with sprites """
+
+# pylint: disable=too-many-instance-attributes, dangerous-default-value, too-many-arguments, unused-argument, no-name-in-module, c-extension-no-member
+# 1) Sprites require lots of attributes
+# 2) I need those typed default values
+# 3) Same as the attributes sprites need lots of information
+# 4) Unused arguments are used by other functions in controls.py
+# 5) This seems to keep coming up in pygame
+# 6) Something about gfxdraw being a c-extension
+
 import sys
-import controls
+from random import choice
 from copy import deepcopy
+from ruamel.yaml import YAML
+from pygame import gfxdraw, error
+import controls
 from controls import pygame, log
-from time import sleep
-from pprint import pprint
-from pygame import gfxdraw
-from time import sleep
 
 
-class base_sprite(pygame.sprite.Sprite):
+class BaseSprite(pygame.sprite.Sprite):
+    """ Base sprite class that shares functionality with all other sprites """
     move = 0
     walk_duration = 0
 
@@ -39,6 +47,8 @@ class base_sprite(pygame.sprite.Sprite):
         self.frame_counter = 0
         self.i = i
         self.j = j
+        self.char_x = int()
+        self.char_y = int()
         self.path = path
         self.kwargs = kwargs
         self.state_files = {key: list(states[key]) for key in states}
@@ -46,7 +56,10 @@ class base_sprite(pygame.sprite.Sprite):
         self.children = []
         self.rest_state = "default"
         self.frame_wait = 10
+        self.message = message
         self.name = name
+        self.current_move = self.still
+        self.passback = {}
 
         self.state_map = {
             "up": self.up,
@@ -61,10 +74,12 @@ class base_sprite(pygame.sprite.Sprite):
         self.rect = pygame.Rect(self.i, self.j, self.width, self.height)
 
     def movement(self, i, j):
+        """ a """
         self.rect.x = self.i + controls.x
         self.rect.y = self.j + controls.y
 
     def collide(self, rect):
+        """ a """
         if rect.x < self.rect.x:
             self.left()
             self.current_move = self.left
@@ -82,6 +97,7 @@ class base_sprite(pygame.sprite.Sprite):
         return None
 
     def to_yaml(self):
+        """ a """
         yaml = YAML()
         yaml.explicit_start = True
         yaml.indent(sequence=4, offset=2)
@@ -97,58 +113,69 @@ class base_sprite(pygame.sprite.Sprite):
         )
 
     def right(self):
+        """ a """
         self.state = "right"
         self.rest_state = "default_right"
         self.movement(-self.speed, 0)
 
     def left(self):
+        """ a """
         self.state = "left"
         self.rest_state = "default_left"
         self.movement(self.speed, 0)
 
+    # pylint: disable=invalid-name
+    # I think this is because up is only 2 letters long.
+    # It explains what its doing so I'm keeping it.
     def up(self):
+        """ a """
         self.state = "up"
         self.rest_state = "default_up"
         self.movement(0, self.speed)
 
     def down(self):
+        """ a """
         self.state = "down"
         self.rest_state = "default"
         self.movement(0, -self.speed)
 
     def still(self):
+        """ a """
         self.movement(0, 0)
 
-    def log(self, message):
-        log(__name__, message)
-
     def state_generator(self):
+        """ a """
         for state in self.states:
             for frame_index in range(len(self.states[state])):
-                if type(self.states[state][frame_index]) == str:
+                if isinstance(self.states[state][frame_index], str):
                     try:
                         self.states[state][frame_index] = pygame.image.load(
                             self.states[state][frame_index]
                         ).convert_alpha()
-                    except:
+                    except error:
                         self.states[state][frame_index] = pygame.image.load(
                             self.path + self.states[state][frame_index]
                         ).convert_alpha()
+
                 self.states[state][frame_index] = pygame.transform.scale(
                     self.states[state][frame_index],
                     (self.width, self.height)
                 )
 
     def position_log(self):
-        self.log([self.i, self.j])
+        """ a """
+        log(__name__, [self.i, self.j])
 
     def each_frame(self):
+        """ a """
         pass
 
     def resize(self, *args):
+        """ a """
         pass
 
     def update(self):
+        """ a """
         self.position_log()
         self.each_frame()
         if self.step >= len(self.states[self.state]):
@@ -164,44 +191,56 @@ class base_sprite(pygame.sprite.Sprite):
         self.frame_counter += 1
         if not self.frame_counter % self.frame_wait:
             self.step += 1
-        self.passback = {}
         self.movement(0, 0)
         # pygame.display.flip()
         # sleep(0.5)
         return self.passback
 
 
-class physical_sprite(base_sprite):
+class PhysicalSprite(BaseSprite):
+    """ a """
     speed = 1
     gradient = 1
 
     def shadow(self):
+        """ a """
         gfxdraw.filled_ellipse(
-            controls.screen, self.rect.midbottom[0], self.rect.midbottom[1], self.width/3, self.height/8, (10, 10, 10, 220))
+            controls.screen,
+            self.rect.midbottom[0],
+            self.rect.midbottom[1],
+            self.width/3,
+            self.height/8,
+            (10, 10, 10, 220)
+        )
 
 
-class static_sprite(physical_sprite):
+class StaticSprite(PhysicalSprite):
+    """ a """
     speed = 0
     name = "static"
 
 
-class npc_sprite(physical_sprite):
+class NpcSprite(PhysicalSprite):
+    """ a """
     move = 0
     speed = 1
     walk_duration = 20
     name = "npc"
 
     def movement(self, i, j):
+        """ a """
         self.i += i
         self.j += j
         self.rect.x = self.i + controls.x
         self.rect.y = self.j + controls.y
 
     def choose_random_direction(self):
+        """ a """
         self.current_move = choice(
             [self.up, self.down, self.left, self.right] + 10 * [self.still])
 
     def each_frame(self):
+        """ a """
         # self.shadow()
         if not self.move % self.walk_duration:
             self.choose_random_direction()
@@ -209,7 +248,8 @@ class npc_sprite(physical_sprite):
         self.move += 1
 
 
-class player_sprite(physical_sprite):
+class PlayerSprite(PhysicalSprite):
+    """ a """
     x = controls.width/2 - 20
     y = controls.height/2 - 35
     sensitivity = 3
@@ -221,17 +261,20 @@ class player_sprite(physical_sprite):
     collisions = [False, False, False, False]
 
     def movement(self, i, j):
+        """ a """
         pass
 
     def collide(self, rect):
-        small_rect = deepcopy(self.rect)
+        """ a """
         self.char_x, self.char_y = deepcopy(self.rect.center)
         col_x, col_y = rect.center
         shoulders = list(self.rect.midtop)
         shoulders[1] -= 31
-        if col_x < self.char_x and (rect.collidepoint(self.rect.midleft) or rect.collidepoint(self.rect.bottomleft)):
+        if col_x < self.char_x and (rect.collidepoint(self.rect.midleft) \
+                                    or rect.collidepoint(self.rect.bottomleft)):
             self.collisions[0] = "left"
-        if col_x > self.char_x and (rect.collidepoint(self.rect.midright) or rect.collidepoint(self.rect.bottomright)):
+        if col_x > self.char_x and (rect.collidepoint(self.rect.midright) \
+                                    or rect.collidepoint(self.rect.bottomright)):
             self.collisions[1] = "right"
         if col_y > self.char_y and (rect.collidepoint(self.rect.midbottom)):
             self.collisions[2] = "down"
@@ -244,6 +287,7 @@ class player_sprite(physical_sprite):
         return self.collisions
 
     def update(self):
+        """ a """
         self.collisions = [False, False, False, False]
         # self.shadow()
         self.position_log()
