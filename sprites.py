@@ -1,4 +1,4 @@
-""" Class for dealing with sprites """
+""" Class for dealing with sprites"""
 
 # pylint: disable=too-many-instance-attributes, dangerous-default-value, too-many-arguments, unused-argument, no-name-in-module, c-extension-no-member
 # 1) Sprites require lots of attributes
@@ -18,7 +18,7 @@ from controls import pygame, log
 
 
 class BaseSprite(pygame.sprite.Sprite):
-    """ Base sprite class that shares functionality with all other sprites """
+    """ Base sprite class that shares functionality with all other sprites"""
     move = 0
     walk_duration = 0
 
@@ -60,7 +60,6 @@ class BaseSprite(pygame.sprite.Sprite):
         self.name = name
         self.current_move = self.still
         self.passback = {}
-
         self.state_map = {
             "up": self.up,
             "down": self.down,
@@ -74,12 +73,12 @@ class BaseSprite(pygame.sprite.Sprite):
         self.rect = pygame.Rect(self.i, self.j, self.width, self.height)
 
     def movement(self, i, j):
-        """ a """
+        """ Method takes the global value for x, y of PC and sets the local value of this sprite"""
         self.rect.x = self.i + controls.x
         self.rect.y = self.j + controls.y
 
     def collide(self, rect):
-        """ a """
+        """ What happens when an NPC collides with another sprite in the same group"""
         if rect.x < self.rect.x:
             self.left()
             self.current_move = self.left
@@ -97,7 +96,7 @@ class BaseSprite(pygame.sprite.Sprite):
         return None
 
     def to_yaml(self):
-        """ a """
+        """ Prints certain values to the screen in YAML format"""
         yaml = YAML()
         yaml.explicit_start = True
         yaml.indent(sequence=4, offset=2)
@@ -113,13 +112,13 @@ class BaseSprite(pygame.sprite.Sprite):
         )
 
     def right(self):
-        """ a """
+        """ Basic move right function"""
         self.state = "right"
         self.rest_state = "default_right"
         self.movement(-self.speed, 0)
 
     def left(self):
-        """ a """
+        """ Basic move left function"""
         self.state = "left"
         self.rest_state = "default_left"
         self.movement(self.speed, 0)
@@ -128,23 +127,25 @@ class BaseSprite(pygame.sprite.Sprite):
     # I think this is because up is only 2 letters long.
     # It explains what its doing so I'm keeping it.
     def up(self):
-        """ a """
+        """ Basic move up function"""
         self.state = "up"
         self.rest_state = "default_up"
         self.movement(0, self.speed)
 
     def down(self):
-        """ a """
+        """ Basic move down function"""
         self.state = "down"
         self.rest_state = "default"
         self.movement(0, -self.speed)
 
     def still(self):
-        """ a """
+        """ Basic don't move function"""
         self.movement(0, 0)
 
     def state_generator(self):
-        """ a """
+        """
+        Run when the sprite loads.
+        This takes the sprite state object/text and loads images to cycle through"""
         for state in self.states:
             for frame_index in range(len(self.states[state])):
                 if isinstance(self.states[state][frame_index], str):
@@ -163,28 +164,25 @@ class BaseSprite(pygame.sprite.Sprite):
                 )
 
     def position_log(self):
-        """ a """
+        """ print sprite position"""
         log(__name__, [self.i, self.j])
 
     def each_frame(self):
-        """ a """
+        """ method handle to do each frame"""
         pass
 
     def resize(self, *args):
-        """ a """
+        """ Method to handle screen resizes"""
         pass
 
     def update(self):
-        """ a """
+        """ Run each frame to update the sprite"""
         self.position_log()
         self.each_frame()
         if self.step >= len(self.states[self.state]):
             self.step = 0
         controls.screen.blit(
-            # pygame.transform.scale(
             self.states[self.state][self.step],
-            #  (self.width, self.height)
-            #   ),
             (self.i + controls.x, self.j + controls.y),
         )
         self.state = self.rest_state
@@ -192,18 +190,16 @@ class BaseSprite(pygame.sprite.Sprite):
         if not self.frame_counter % self.frame_wait:
             self.step += 1
         self.movement(0, 0)
-        # pygame.display.flip()
-        # sleep(0.5)
         return self.passback
 
 
 class PhysicalSprite(BaseSprite):
-    """ a """
+    """ Physical sprite class. For sprites that need to touch each other"""
     speed = 1
     gradient = 1
 
     def shadow(self):
-        """ a """
+        """ Draw a shadow under the character"""
         gfxdraw.filled_ellipse(
             controls.screen,
             self.rect.midbottom[0],
@@ -215,32 +211,36 @@ class PhysicalSprite(BaseSprite):
 
 
 class StaticSprite(PhysicalSprite):
-    """ a """
+    """ Static sprite class. For sprites that need to stay where they are"""
     speed = 0
     name = "static"
 
 
 class NpcSprite(PhysicalSprite):
-    """ a """
+    """ NPC sprites. For those non playable sprites"""
     move = 0
     speed = 1
     walk_duration = 20
     name = "npc"
 
     def movement(self, i, j):
-        """ a """
+        """ Method takes the global value for x, y of PC and sets the local value of this sprite"""
         self.i += i
         self.j += j
         self.rect.x = self.i + controls.x
         self.rect.y = self.j + controls.y
 
     def choose_random_direction(self):
-        """ a """
+        """ Picks a random movement function, weighted to stay still most of the time"""
         self.current_move = choice(
             [self.up, self.down, self.left, self.right] + 10 * [self.still])
 
     def each_frame(self):
-        """ a """
+        """
+        Npc checks if its finished walking
+        in a random direction or picks a
+        new one to walk in
+        """
         # self.shadow()
         if not self.move % self.walk_duration:
             self.choose_random_direction()
@@ -249,7 +249,7 @@ class NpcSprite(PhysicalSprite):
 
 
 class PlayerSprite(PhysicalSprite):
-    """ a """
+    """ Player sprites. For those playable sprites"""
     x = controls.width/2 - 20
     y = controls.height/2 - 35
     sensitivity = 3
@@ -261,11 +261,11 @@ class PlayerSprite(PhysicalSprite):
     collisions = [False, False, False, False]
 
     def movement(self, i, j):
-        """ a """
+        """ Generally stay where they are"""
         pass
 
     def collide(self, rect):
-        """ a """
+        """ Runs whenever a sprite in the same group as the playable character collides"""
         self.char_x, self.char_y = deepcopy(self.rect.center)
         col_x, col_y = rect.center
         shoulders = list(self.rect.midtop)
@@ -287,7 +287,11 @@ class PlayerSprite(PhysicalSprite):
         return self.collisions
 
     def update(self):
-        """ a """
+        """
+        Run each frame to update the sprite,
+        had to alter for the PC as its
+        behaviour was too different
+        """
         self.collisions = [False, False, False, False]
         # self.shadow()
         self.position_log()
