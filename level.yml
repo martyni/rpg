@@ -1,8 +1,8 @@
 - height: 32
   i: 256
   j: 160
-  name: water-solid
+  name: water-beach-top
   states:
-    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
-      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+    default: [assets/images/tile_water-beach-top_02.bmp, assets/images/tile_water-beach-top_03.bmp,
+      assets/images/tile_water-beach-top_01.bmp, assets/images/tile_water-beach-top_00.bmp]
   width: 32

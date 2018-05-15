@@ -3,7 +3,6 @@ import os
 import yaml
 from controls import log
 
-ASSETS = [{i[0]:[i[1], i[2]]} for i in os.walk('assets')]
 ASSETS = {i[0]: [i[1], i[2]] for i in os.walk('assets')}
 LEVELS = {i: {} for i in ASSETS['assets'][0] if 'l' in i}
 

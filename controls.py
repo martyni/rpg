@@ -102,6 +102,14 @@ def load_background(file):
 
 
 def save_background(file, tile_list):
+    """
+    Saves current placed tiles to yml file.
+    no_repeats creates a dictionary where redundant tiles will 
+    save over each other. The way the tile list is created means 
+    new tiles will always take president.
+    """
+    no_repeats = { (tile["i"], tile["j"]): tile for tile in tile_list}
+    tile_list = [tile for tile in no_repeats.values()]
     with open(file, 'w') as background:
         raw_f = background.write(yaml.dump(tile_list))
 
