@@ -108,7 +108,7 @@ def save_background(file, tile_list):
     save over each other. The way the tile list is created means 
     new tiles will always take president.
     """
-    no_repeats = { (tile["i"], tile["j"]): tile for tile in tile_list}
+    no_repeats = {(tile["i"], tile["j"]): tile for tile in tile_list}
     tile_list = [tile for tile in no_repeats.values()]
     with open(file, 'w') as background:
         raw_f = background.write(yaml.dump(tile_list))
