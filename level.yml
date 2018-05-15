@@ -6,3 +6,35 @@
     default: [assets/images/tile_water-beach-top_02.bmp, assets/images/tile_water-beach-top_03.bmp,
       assets/images/tile_water-beach-top_01.bmp, assets/images/tile_water-beach-top_00.bmp]
   width: 32
+- height: 32
+  i: 224
+  j: 96
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- height: 32
+  i: 320
+  j: 96
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- height: 32
+  i: 384
+  j: 128
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- height: 32
+  i: 256
+  j: 96
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32

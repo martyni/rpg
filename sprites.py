@@ -74,8 +74,8 @@ class BaseSprite(pygame.sprite.Sprite):
 
     def movement(self, i, j):
         """ Method takes the global value for x, y of PC and sets the local value of this sprite"""
-        self.rect.x = self.i + controls.x
-        self.rect.y = self.j + controls.y
+        self.rect.x = self.i + controls.X
+        self.rect.y = self.j + controls.Y
 
     def collide(self, rect):
         """ What happens when an NPC collides with another sprite in the same group"""
@@ -181,9 +181,9 @@ class BaseSprite(pygame.sprite.Sprite):
         self.each_frame()
         if self.step >= len(self.states[self.state]):
             self.step = 0
-        controls.screen.blit(
+        controls.SCREEN.blit(
             self.states[self.state][self.step],
-            (self.i + controls.x, self.j + controls.y),
+            (self.i + controls.X, self.j + controls.Y),
         )
         self.state = self.rest_state
         self.frame_counter += 1
@@ -201,7 +201,7 @@ class PhysicalSprite(BaseSprite):
     def shadow(self):
         """ Draw a shadow under the character"""
         gfxdraw.filled_ellipse(
-            controls.screen,
+            controls.SCREEN,
             self.rect.midbottom[0],
             self.rect.midbottom[1],
             self.width/3,
@@ -227,8 +227,8 @@ class NpcSprite(PhysicalSprite):
         """ Method takes the global value for x, y of PC and sets the local value of this sprite"""
         self.i += i
         self.j += j
-        self.rect.x = self.i + controls.x
-        self.rect.y = self.j + controls.y
+        self.rect.x = self.i + controls.X
+        self.rect.y = self.j + controls.Y
 
     def choose_random_direction(self):
         """ Picks a random movement function, weighted to stay still most of the time"""
@@ -250,8 +250,8 @@ class NpcSprite(PhysicalSprite):
 
 class PlayerSprite(PhysicalSprite):
     """ Player sprites. For those playable sprites"""
-    x = controls.width/2 - 20
-    y = controls.height/2 - 35
+    x = controls.WIDTH/2 - 20
+    y = controls.HEIGHT/2 - 35
     sensitivity = 3
     name = "player"
     speed = 30
@@ -270,11 +270,9 @@ class PlayerSprite(PhysicalSprite):
         col_x, col_y = rect.center
         shoulders = list(self.rect.midtop)
         shoulders[1] -= 31
-        if col_x < self.char_x and (rect.collidepoint(self.rect.midleft) \
-                                    or rect.collidepoint(self.rect.bottomleft)):
+        if col_x < self.char_x and (rect.collidepoint(self.rect.midleft)):
             self.collisions[0] = "left"
-        if col_x > self.char_x and (rect.collidepoint(self.rect.midright) \
-                                    or rect.collidepoint(self.rect.bottomright)):
+        if col_x > self.char_x and (rect.collidepoint(self.rect.midright)):
             self.collisions[1] = "right"
         if col_y > self.char_y and (rect.collidepoint(self.rect.midbottom)):
             self.collisions[2] = "down"
@@ -298,19 +296,19 @@ class PlayerSprite(PhysicalSprite):
         if self.step >= len(self.states[self.state]):
             self.step = 0
         for child in self.children:
-            controls.screen.blit(child.state.get(
+            controls.SCREEN.blit(child.state.get(
                 self.state, "default"), self.x, self.y)
-        controls.screen.blit(
+        controls.SCREEN.blit(
             self.states[self.state][self.step],
             (self.x, self.y),
         )
         self.state = self.rest_state
         for action in ["left", "right", "down", "up", "attack", "back"]:
-            if controls.actions[action] and action not in ["attack", "back"]:
+            if controls.ACTIONS[action] and action not in ["attack", "back"]:
                 if self.states[action]:
                     self.state = action
                     self.state_map[action]()
-            elif controls.actions[action] and action in ["attack", "back"]:
+            elif controls.ACTIONS[action] and action in ["attack", "back"]:
                 if action == "back":
                     self.to_yaml()
         self.frame_counter += 1

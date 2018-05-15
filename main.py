@@ -12,8 +12,11 @@ BACKGROUND = BaseSprite(**LEVELS['l1'].settings)
 GAME_TILES = []
 
 #Load game tiles from level yml file
-with open('level.yml', 'r') as bg_tiles:
-    TILE_LIST = yaml.load(bg_tiles.read())
+try:
+    with open('level.yml', 'r') as bg_tiles:
+        TILE_LIST = yaml.load(bg_tiles.read())
+except IOError:
+   TILE_LIST = []
 try:
     BACKGROUND_LAYERS = [BaseSprite(**t) for t in TILE_LIST]
 except TypeError:
@@ -47,8 +50,8 @@ STATIC_SPRITES = [StaticSprite(**child.settings)
 PC = PlayerSprite(
     34,
     64,
-    i=controls.width/2 - 20,
-    j=controls.height/2 - 35,
+    i=controls.WIDTH/2 - 20,
+    j=controls.HEIGHT/2 - 35,
     states={
         "default":
         [
@@ -102,6 +105,6 @@ controls.main(background_layers=BACKGROUND_LAYERS,
               text=A_TEXT,
               sprite_groups=[MAIN_PHYSICAL_GROUP, PC_PHYSICAL_GROUP],
               tiles=GAME_TILES,
-              BaseSprite=BaseSprite,
-              StaticSprite=StaticSprite)
+              base_sprite=BaseSprite,
+              static_sprite=StaticSprite)
 exit(1)

@@ -18,8 +18,8 @@ class BaseText(pygame.sprite.Sprite):
         self.__name__ = "text"
         self.i = 0
         self.j = 10000000000
-        self.width = controls.width
-        self.height = controls.height
+        self.width = controls.WIDTH
+        self.height = controls.HEIGHT
         self.border_width = 3
         self.write = True
         self.resize(self.width, self.height)
@@ -50,10 +50,10 @@ class BaseText(pygame.sprite.Sprite):
 
         if self.write:
             self.resize(self.width, self.height)
-            controls.screen.blit(
+            controls.SCREEN.blit(
                 self.background, [0, self.height - int(self.height / 9)])
             pygame.draw.rect(
-                controls.screen,
+                controls.SCREEN,
                 (0, 0, 0, 0),
                 [
                     0,
@@ -63,12 +63,12 @@ class BaseText(pygame.sprite.Sprite):
                 ],
                 self.border_width
             )
-            controls.screen.blit(self.text_screen, [
+            controls.SCREEN.blit(self.text_screen, [
                 self.border_width,
                 self.height - int(self.height / 9)
             ])
-        for action in controls.actions:
-            if controls.actions[action]:
+        for action in controls.ACTIONS:
+            if controls.ACTIONS[action]:
                 self.state = action
             if self.state == 'attack':
                 try:
