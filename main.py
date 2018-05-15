@@ -3,7 +3,7 @@ import yaml
 from controls import pygame, log
 from sprites import BaseSprite, PlayerSprite, NpcSprite, StaticSprite
 from text import BaseText
-from load import levels, tiles
+from load import LEVELS, TILES
 from sprite_groups import MAIN_PHYSICAL_GROUP, PC_PHYSICAL_GROUP
 pc = PlayerSprite(
     34,
@@ -47,7 +47,7 @@ pc = PlayerSprite(
 
 )
 a_text = BaseText()
-background = BaseSprite(**levels['l1'].settings)
+background = BaseSprite(**LEVELS['l1'].settings)
 with open('level.yml', 'r') as bg_tiles:
     tile_list = yaml.load(bg_tiles.read())
 try:
@@ -62,7 +62,7 @@ for layer in background_layers:
         print layer.states["default"][0]
 
 game_tiles = []
-for tile in tiles:
+for tile in TILES:
     game_tiles.append({
         "width": 32,
         "height": 32,
@@ -70,13 +70,13 @@ for tile in tiles:
         "j": 0,
         "name": tile,
         "states": {
-            "default": tiles[tile]
+            "default": TILES[tile]
         }
     })
 level_sprites = [NpcSprite(**child.settings)
-                 for child in levels['l1'].children['npc']]
+                 for child in LEVELS['l1'].children['npc']]
 StaticSprites = [StaticSprite(**child.settings)
-                  for child in levels['l1'].children['static']]
+                  for child in LEVELS['l1'].children['static']]
 level_sprites.append(pc)
 
 [MAIN_PHYSICAL_GROUP.add(sprite) for sprite in level_sprites + StaticSprites]
