@@ -4,7 +4,7 @@ import sys
 from random import choice
 import pygame
 # pylint: disable=no-name-in-module
-# Despite these variables being defined some this error is thrown
+# Despite these variables being defined this error is thrown
 from pygame.locals import MOUSEBUTTONDOWN, KEYDOWN
 # pylint: disable=no-member, too-many-function-args
 # Guessing this will have to go everywhere pygame.init is
