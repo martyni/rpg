@@ -16,6 +16,10 @@ from pygame import gfxdraw, error
 import controls
 from controls import pygame, log
 
+def draw_points(points_list):
+    """Draws points as circles"""
+    for point in points_list:
+        gfxdraw.filled_circle(controls.SCREEN, point[0], point[1], 5, (128, 0, 128))
 
 class BaseSprite(pygame.sprite.Sprite):
     """ Base sprite class that shares functionality with all other sprites"""
@@ -47,6 +51,7 @@ class BaseSprite(pygame.sprite.Sprite):
         self.frame_counter = 0
         self.i = i
         self.j = j
+        self.knee = [0, 0]
         self.char_x = int()
         self.char_y = int()
         self.path = path
@@ -270,19 +275,21 @@ class PlayerSprite(PhysicalSprite):
         col_x, col_y = rect.center
         shoulders = list(self.rect.midtop)
         shoulders[1] -= 31
-        if col_x < self.char_x and (rect.collidepoint(self.rect.midleft)):
+        self.knee = [self.rect.midbottom[0],
+                     self.rect.center[1] + (self.rect.midbottom[1] -  self.rect.center[1])/2]
+        if col_x < self.char_x and (rect.collidepoint(self.rect.midleft)
+                                    or rect.collidepoint(self.knee)):
             self.collisions[0] = "left"
-        if col_x > self.char_x and (rect.collidepoint(self.rect.midright)):
+        if col_x > self.char_x and (rect.collidepoint(self.rect.midright)
+                                    or rect.collidepoint(self.knee)):
             self.collisions[1] = "right"
         if col_y > self.char_y and (rect.collidepoint(self.rect.midbottom)):
             self.collisions[2] = "down"
         if col_y < self.char_y and (rect.collidepoint(self.rect.midtop)):
-            print self.rect.midtop
-            print self.rect.center
-            print self.rect.midbottom
-            print col_x, col_y
             self.collisions[3] = "up"
         return self.collisions
+
+
 
     def update(self):
         """
@@ -317,4 +324,11 @@ class PlayerSprite(PhysicalSprite):
         self.i = self.x
         self.j = self.y
         self.passback = {}
+        #draw_points([self.rect.center,
+        #                   self.rect.midleft,
+        #                   self.rect.midbottom,
+        #                   self.rect.midtop,
+        #                   self.rect.midright,
+        #                   self.knee])
+
         return self.passback

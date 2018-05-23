@@ -16,7 +16,7 @@ try:
     with open('level.yml', 'r') as bg_tiles:
         TILE_LIST = yaml.load(bg_tiles.read())
 except IOError:
-   TILE_LIST = []
+    TILE_LIST = []
 try:
     BACKGROUND_LAYERS = [BaseSprite(**t) for t in TILE_LIST]
 except TypeError:
