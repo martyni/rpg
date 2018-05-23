@@ -8,7 +8,7 @@
 # 5) This seems to keep coming up in pygame
 # 6) Something about gfxdraw being a c-extension
 
-import sys 
+import sys
 from random import choice
 from copy import deepcopy
 from ruamel.yaml import YAML
