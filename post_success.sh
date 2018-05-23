@@ -1,9 +1,14 @@
 #!/bin/bash
-export EXIT=0
+export EXIT=""
 for python_file in $(ls *py)
    do 
 	   echo $python_file
-	   pylint $python_file || export EXIT=1
+	   pylint $python_file || export EXIT="Failed: $EXIT $python_file"
+	   echo $EXIT
 done
-echo $EXIT
-exit $EXIT    
+if [ -z "$EXIT" ] ; then
+   echo success
+else
+   echo $EXIT
+   exit 1
+fi   
