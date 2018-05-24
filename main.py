@@ -26,6 +26,12 @@ except TypeError:
 for layer in BACKGROUND_LAYERS:
     if "solid" in layer.name:
         MAIN_PHYSICAL_GROUP.add(layer)
+    if layer.children:
+        for child in layer.children:
+            name, sprite_dict = layer.children.popitem()
+            layer.children[name] = BaseSprite(**sprite_dict)
+            layer.children[name].draw_method = layer.children[name].draw_blend_max
+
 
 #Create the list of tiles found in Assets for editing
 for tile in TILES:
@@ -37,8 +43,21 @@ for tile in TILES:
         "name": tile,
         "states": {
             "default": TILES[tile]
-        }
+        },
+        "children":{}
     })
+    if "water" in tile:
+        print "adding splash to ", tile
+        GAME_TILES[-1]["children"]["col"] = {
+            "width": 32,
+            "height": 32,
+            "i": 0,
+            "j": 0,
+            "name": tile,
+            "states": {
+                "default": ["assets/images/splash_00.bmp", "assets/images/splash_01.bmp"]
+            }
+        }
 
 #Add level 1 sprites
 LEVEL_SPRITES = [NpcSprite(**child.settings)
@@ -99,6 +118,7 @@ PC_PHYSICAL_GROUP.add(PC)
 # pylint: disable=expression-not-assigned
 # I also like to live dangerously
 [MAIN_PHYSICAL_GROUP.add(sprite) for sprite in LEVEL_SPRITES + STATIC_SPRITES]
+
 
 controls.main(background_layers=BACKGROUND_LAYERS,
               sprites=LEVEL_SPRITES + STATIC_SPRITES,

@@ -1,1 +1,1041 @@
-[]
+- children: {}
+  height: 32
+  i: 960
+  j: 96
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-beach-top
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 480
+  j: 288
+  name: water-beach-top
+  states:
+    default: [assets/images/tile_water-beach-top_02.bmp, assets/images/tile_water-beach-top_03.bmp,
+      assets/images/tile_water-beach-top_01.bmp, assets/images/tile_water-beach-top_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 384
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 448
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 320
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 288
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 928
+  j: 96
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 704
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 256
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 544
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 896
+  j: 64
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 416
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 992
+  j: 64
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 512
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 224
+  j: 256
+  name: beach
+  states:
+    default: [assets/images/tile_beach_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 960
+  j: 64
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 896
+  j: 160
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 896
+  j: 96
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 320
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 864
+  j: 128
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 288
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 576
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 704
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 96
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 928
+  j: 64
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 992
+  j: 160
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 864
+  j: 64
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 128
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 544
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 960
+  j: 128
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 416
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 352
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 224
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 864
+  j: 160
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 672
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 608
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 640
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 640
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 224
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 960
+  j: 160
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 160
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 256
+  j: 256
+  name: beach
+  states:
+    default: [assets/images/tile_beach_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-beach-top
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 448
+  j: 288
+  name: water-beach-top
+  states:
+    default: [assets/images/tile_water-beach-top_02.bmp, assets/images/tile_water-beach-top_03.bmp,
+      assets/images/tile_water-beach-top_01.bmp, assets/images/tile_water-beach-top_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 320
+  j: 256
+  name: beach2
+  states:
+    default: [assets/images/tile_beach2_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 192
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-beach-top
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 288
+  j: 288
+  name: water-beach-top
+  states:
+    default: [assets/images/tile_water-beach-top_02.bmp, assets/images/tile_water-beach-top_03.bmp,
+      assets/images/tile_water-beach-top_01.bmp, assets/images/tile_water-beach-top_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 576
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-beach-top
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 352
+  j: 288
+  name: water-beach-top
+  states:
+    default: [assets/images/tile_water-beach-top_02.bmp, assets/images/tile_water-beach-top_03.bmp,
+      assets/images/tile_water-beach-top_01.bmp, assets/images/tile_water-beach-top_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 96
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 992
+  j: 128
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 384
+  j: 256
+  name: beach
+  states:
+    default: [assets/images/tile_beach_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 128
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 896
+  j: 128
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-beach-top
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 416
+  j: 288
+  name: water-beach-top
+  states:
+    default: [assets/images/tile_water-beach-top_02.bmp, assets/images/tile_water-beach-top_03.bmp,
+      assets/images/tile_water-beach-top_01.bmp, assets/images/tile_water-beach-top_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 864
+  j: 96
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 928
+  j: 128
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 928
+  j: 160
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 672
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 448
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 608
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 480
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 512
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 160
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 352
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 992
+  j: 96
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-beach-top
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 256
+  j: 288
+  name: water-beach-top
+  states:
+    default: [assets/images/tile_water-beach-top_02.bmp, assets/images/tile_water-beach-top_03.bmp,
+      assets/images/tile_water-beach-top_01.bmp, assets/images/tile_water-beach-top_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-beach-top
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 320
+  j: 288
+  name: water-beach-top
+  states:
+    default: [assets/images/tile_water-beach-top_02.bmp, assets/images/tile_water-beach-top_03.bmp,
+      assets/images/tile_water-beach-top_01.bmp, assets/images/tile_water-beach-top_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 384
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 256
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 288
+  j: 256
+  name: beach
+  states:
+    default: [assets/images/tile_beach_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 352
+  j: 256
+  name: beach
+  states:
+    default: [assets/images/tile_beach_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-beach-top
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 224
+  j: 288
+  name: water-beach-top
+  states:
+    default: [assets/images/tile_water-beach-top_02.bmp, assets/images/tile_water-beach-top_03.bmp,
+      assets/images/tile_water-beach-top_01.bmp, assets/images/tile_water-beach-top_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 480
+  j: 352
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-beach-top
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 384
+  j: 288
+  name: water-beach-top
+  states:
+    default: [assets/images/tile_water-beach-top_02.bmp, assets/images/tile_water-beach-top_03.bmp,
+      assets/images/tile_water-beach-top_01.bmp, assets/images/tile_water-beach-top_00.bmp]
+  width: 32
+- children:
+    col:
+      height: 32
+      i: 0
+      j: 0
+      name: water-solid
+      states:
+        default: [assets/images/splash_00.bmp, assets/images/splash_01.bmp]
+      width: 32
+  height: 32
+  i: 192
+  j: 320
+  name: water-solid
+  states:
+    default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
+      assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32

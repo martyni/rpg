@@ -8,11 +8,11 @@
 # 5) This seems to keep coming up in pygame
 # 6) Something about gfxdraw being a c-extension
 
-import sys
 from random import choice
 from copy import deepcopy
 from ruamel.yaml import YAML
 from pygame import gfxdraw, error
+from pygame.locals import BLEND_MAX
 import controls
 from controls import pygame, log
 
@@ -39,6 +39,7 @@ class BaseSprite(pygame.sprite.Sprite):
                     "Hello, how are you today?", "Inside, I'm dying"],
             message=choice(["I like you"]),
             name="default",
+            children={},
             **kwargs
     ):
         pygame.sprite.Sprite.__init__(self)
@@ -58,13 +59,14 @@ class BaseSprite(pygame.sprite.Sprite):
         self.kwargs = kwargs
         self.state_files = {key: list(states[key]) for key in states}
         self.state_generator()
-        self.children = []
+        self.children = children
         self.rest_state = "default"
         self.frame_wait = 10
         self.message = message
         self.name = name
         self.current_move = self.still
         self.passback = {}
+        self.draw_method = self.draw_standard
         self.state_map = {
             "up": self.up,
             "down": self.down,
@@ -111,10 +113,6 @@ class BaseSprite(pygame.sprite.Sprite):
             "x": self.x,
             "y": self.y}
         data.update({"states": self.state_files})
-        print yaml.dump(
-            data,
-            sys.stdout
-        )
 
     def right(self):
         """ Basic move right function"""
@@ -180,29 +178,37 @@ class BaseSprite(pygame.sprite.Sprite):
         """ Method to handle screen resizes"""
         pass
 
-    def update(self):
+    def update(self, clock):
         """ Run each frame to update the sprite"""
         self.position_log()
         self.each_frame()
-        if self.step >= len(self.states[self.state]):
-            self.step = 0
-        controls.SCREEN.blit(
-            self.states[self.state][self.step],
-            (self.i + controls.X, self.j + controls.Y),
-        )
+        self.step = clock % len(self.states[self.state])
+        self.draw_method(self.step, self.state)
         self.state = self.rest_state
-        self.frame_counter += 1
-        if not self.frame_counter % self.frame_wait:
-            self.step += 1
         self.movement(0, 0)
         return self.passback
+
+    def draw_blend_max(self, frame_index, state):
+        """For transparent objects """
+        controls.SCREEN.blit(
+            self.states[state][frame_index],
+            (self.i + controls.X, self.j + controls.Y),
+            special_flags=BLEND_MAX
+        )
+
+    def draw_standard(self, frame_index, state):
+        """Standard draw method"""
+        controls.SCREEN.blit(
+            self.states[state][frame_index],
+            (self.i + controls.X, self.j + controls.Y),
+            )
+
 
 
 class PhysicalSprite(BaseSprite):
     """ Physical sprite class. For sprites that need to touch each other"""
     speed = 1
     gradient = 1
-
     def shadow(self):
         """ Draw a shadow under the character"""
         gfxdraw.filled_ellipse(
@@ -291,17 +297,15 @@ class PlayerSprite(PhysicalSprite):
 
 
 
-    def update(self):
+    def update(self, clock):
         """
         Run each frame to update the sprite,
         had to alter for the PC as its
         behaviour was too different
         """
         self.collisions = [False, False, False, False]
-        # self.shadow()
         self.position_log()
-        if self.step >= len(self.states[self.state]):
-            self.step = 0
+        self.step = clock % len(self.states[self.state])
         for child in self.children:
             controls.SCREEN.blit(child.state.get(
                 self.state, "default"), self.x, self.y)
@@ -318,9 +322,6 @@ class PlayerSprite(PhysicalSprite):
             elif controls.ACTIONS[action] and action in ["attack", "back"]:
                 if action == "back":
                     self.to_yaml()
-        self.frame_counter += 1
-        if not self.frame_counter % self.frame_wait:
-            self.step += 1
         self.i = self.x
         self.j = self.y
         self.passback = {}
