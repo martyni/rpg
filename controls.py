@@ -286,7 +286,8 @@ def main(background_layers=[],
                                         collision.rect.collidepoint(sprite.rect.bottomright) or  \
                                         collision.rect.collidepoint(sprite.rect.bottomleft):
                                         col = [WIDTH/2 - X - 16 - 2, HEIGHT/2 - Y + 16]
-                                        collision.children["col"].i, collision.children["col"].j = col
+                                        collision.children["col"].i, collision.children["col"].j \
+                                                = col
                                         collision.children["col"].update(sudo_clock/10)
                                         rect_list.append(collision.children["col"].rect)
                                 blocking += sprite.collide(collision.rect)
