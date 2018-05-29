@@ -13,7 +13,7 @@ class BaseText(pygame.sprite.Sprite):
                  text='abcdefg',
                  **kwargs
                 ):
-        self.font = pygame.font.SysFont('liberationserif', 30)
+        self.font = pygame.font.Font('Fipps-Regular.otf', 25)
         self.text = text
         self.__name__ = "text"
         self.i = 0
