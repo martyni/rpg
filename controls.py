@@ -4,7 +4,7 @@
 # another pygame error
 # and another one
 # still live dangerously
-# pylint: disable=too-many-function-args,too-many-locals,too-many-nested-blocks,too-many-branches,too-many-statements
+# pylint: disable=too-many-function-args,too-many-locals,too-many-nested-blocks,too-many-branches,too-many-statements,too-many-boolean-expressions
 # too many shame
 
 from copy import deepcopy
@@ -29,8 +29,8 @@ WIDTH, HEIGHT = 640, 480
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 
 BLANK_SCREEN = pygame.Surface((WIDTH, HEIGHT))
-BLANK_SCREEN.fill((255, 255, 255))
-VERBOSE = True
+BLANK_SCREEN.fill((0, 0, 0))
+VERBOSE = False
 SPEED = 3
 SPACING = 32
 X = 0
@@ -169,8 +169,9 @@ def main(background_layers=[],
             current_background_dump = []
     except IOError:
         current_background_dump = []
-        print 'load failed'
+        log(__name__, 'load failed')
     current_tile = 0
+    sudo_clock = 0
     while game:
         ev.pump()
         blocking = []
@@ -216,7 +217,6 @@ def main(background_layers=[],
                     tile_copy = dict(tiles[current_tile])
                     tile_copy["i"] = int(grid_position[0] - X)
                     tile_copy["j"] = int(grid_position[1] - Y)
-                    print tile_copy
                     current_background_dump.append(deepcopy(tile_copy))
 
             elif event.type == KEYDOWN:
@@ -253,17 +253,16 @@ def main(background_layers=[],
                 ACTIONS[direction] = event.dict[direction]
 
         for layer in background_layers:
-            layer.update()
+            layer.update(sudo_clock/10)
         sprites = sorted(sprites, None, lambda sprite: (
             sprite.rect.y, sprite.rect.x))
         #grid(screen, rect_list, 640, 480)
         for sprite in sprites:
-            sprite_pass_back = sprite.update()
+            sprite_pass_back = sprite.update(sudo_clock/10)
             #pygame.draw.rect(screen, (0,0,255), sprite.rect)
             rect_list.append(sprite.rect)
 
             if sprite_pass_back.get('text'):
-                print len(text_queue)
                 text_queue.append(sprite_pass_back['text'])
             for group in sprite_groups:
                 if sprite in group:
@@ -276,14 +275,22 @@ def main(background_layers=[],
                                                                         False,
                                                                         False)[sprite]:
                                 #pygame.draw.rect(screen, (255,0,0,40), collision.rect)
-                                pygame.draw.line(
-                                    SCREEN,
-                                    (255, 128, 40),
-                                    sprite.rect.center,
-                                    collision.rect.center,
-                                    5)
+                                #pygame.draw.line(
+                                #    SCREEN,
+                                #    (255, 128, 40),
+                                #    sprite.rect.center,
+                                #    collision.rect.center,
+                                #    5)
+                                if collision.children.get("col"):
+                                    if collision.rect.collidepoint(sprite.rect.midbottom) or \
+                                        collision.rect.collidepoint(sprite.rect.bottomright) or  \
+                                        collision.rect.collidepoint(sprite.rect.bottomleft):
+                                        col = [WIDTH/2 - X - 16 - 2, HEIGHT/2 - Y + 16]
+                                        collision.children["col"].i, collision.children["col"].j \
+                                                = col
+                                        collision.children["col"].update(sudo_clock/10)
+                                        rect_list.append(collision.children["col"].rect)
                                 blocking += sprite.collide(collision.rect)
-                                print blocking
                     group.add(sprite)
         text_queue = text.update(text_queue)
         #grid(screen, rect_list, 640, 480)
@@ -294,7 +301,7 @@ def main(background_layers=[],
         if able_to_move:
             #screen.fill((randint(1,255), randint(1,255), randint(1,255)))
             pass
-        SCREEN.fill((250, 250, 250, 0))
+        SCREEN.fill((0, 0, 0, 0))
         # pygame.display.update(rect_list)
         clock.tick(40)
         game_info = "mouse: {m_x} , {m_y}, pos: {x}, {y} fps: {fps}, tile: {tile}".format(
@@ -306,6 +313,7 @@ def main(background_layers=[],
             tile=tiles[current_tile].get("name")
         )
         pygame.display.set_caption(game_info)
+        sudo_clock += 1
 
 
 def crt_tv(screen, rect_list, width, height, flicker=40):
