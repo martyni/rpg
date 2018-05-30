@@ -78,7 +78,7 @@ class BaseSprite(pygame.sprite.Sprite):
             (self.width, self.height)
         ).copy()
         self.rect = pygame.Rect(self.i, self.j, self.width, self.height)
-        self.offcenter =  [self.rect.center[0], self.rect.center[1] - 5]
+        self.offcenter = [self.rect.center[0], self.rect.center[1] - 5]
 
     def movement(self, i, j):
         """ Method takes the global value for x, y of PC and sets the local value of this sprite"""

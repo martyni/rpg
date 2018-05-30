@@ -1,7 +1,7 @@
 width: 40
 height: 80
-i: 120 
-j: 120
+i: 150 
+j: 10
 states:
    default:
       - test.png
