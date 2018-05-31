@@ -22,7 +22,7 @@ from pygame.locals import (
     KEYUP,
     )
 from introduction import splash_screen
-from sound import MUSIC, volume_up, volume_down
+from sound import play_song#, volume_up, volume_down
 
 splash_screen()
 pygame.init()
@@ -213,7 +213,7 @@ def main(background_layers=[],
         log(__name__, 'load failed')
     current_tile = 0
     sudo_clock = 0
-    MUSIC.play_song('grosse.ogg')
+    play_song('grosse.ogg')
     while game:
         ev.pump()
         blocking = []

@@ -77,10 +77,10 @@ class BaseSprite(pygame.sprite.Sprite):
         }
         self.sfx = {
             "default": None,
-          #  "up": "step1.wav",
-          #  "down": "step1.wav",
-          #  "left": "step1.wav",
-          #  "right": "step1.wav"
+            #"up": "step1.wav",
+            #"down": "step1.wav",
+            #"left": "step1.wav",
+            #"right": "step1.wav"
         }
 
         self.image = pygame.transform.scale(
@@ -214,16 +214,17 @@ class BaseSprite(pygame.sprite.Sprite):
             (self.i + controls.X, self.j + controls.Y),
             )
 
-    def sound_handling(self):    
+    def sound_handling(self):
+        """Sends requests to SOUND to play sounds also handles sound cooldown"""
         sfx = self.sfx.get(self.state)
         if self.cooldown_map.get(sfx):
-            self.cooldown_map[sfx] -= 1 
+            self.cooldown_map[sfx] -= 1
         elif sfx is None:
             pass
         else:
             self.cooldown_map[self.sfx[self.state]] = 20
             if isinstance(sfx, tuple):
-               sfx = choice(sfx)
+                sfx = choice(sfx)
             SOUND.play_sound(self.rect.x, self.rect.y, sfx)
 
 
@@ -297,6 +298,7 @@ class PlayerSprite(PhysicalSprite):
 
     def movement(self, i, j):
         """ Generally stay where they are"""
+        pass
 
     def collide(self, rect):
         """ Runs whenever a sprite in the same group as the playable character collides"""

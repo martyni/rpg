@@ -1,4 +1,8 @@
 """ Sound Module"""
+# pylint: disable=global-statement, too-few-public-methods
+# I want a single instance of VOLUME accessible accross the game
+# It seems unintuitive to
+
 import math
 from controls import pygame
 
@@ -16,11 +20,30 @@ def same_random_number(string):
     return hash(string) % 10 + 1
 
 def volume_up():
+    """Turns up volume"""
+    global VOLUME
     VOLUME += 0.1
+    if VOLUME < 1:
+        VOLUME -= 0.1
+    pygame.mixer.music.set_volume(VOLUME)
 
-def volume_up():
+def volume_down():
+    """Turns down volume"""
+    global VOLUME
     if VOLUME > 0:
-       VOLUME -= 0.1
+        VOLUME -= 0.1
+    pygame.mixer.music.set_volume(VOLUME)
+
+def stop_song():
+    """stops song"""
+    return pygame.mixer.music.stop()
+
+def play_song(filename):
+    """Plays song continuously"""
+    stop_song()
+    pygame.mixer.music.load(filename)
+    pygame.mixer.music.set_volume(VOLUME)
+    pygame.mixer.music.play(-1)
 
 class SoundBus(object):
     """ Class to handle sound effects"""
@@ -34,7 +57,7 @@ class SoundBus(object):
 
     def play_sound(self, x_pos, y_pos, filename):
         """Play sound"""
-        sft = self.cache.get(filename) if self.cache.get(filename) else pygame.mixer.Sound(filename) 
+        sft = self.cache.get(filename) if self.cache.get(filename) else pygame.mixer.Sound(filename)
         how_loud = 1 - (distance((x_pos, y_pos), self.screen_center) / float(200))
         if how_loud < 0:
             return None
@@ -42,25 +65,8 @@ class SoundBus(object):
         sound_channel = same_random_number(filename)
         if not self.channels[sound_channel].get_busy():
             self.channels[sound_channel].play(sft)
-            print "playing", filename, sound_channel, how_loud
-        else:
-            pass
         return None
 
-    def play_song(self, filename):
-        """Plays song continuously"""
-        print "loading", filename
-        pygame.mixer.music.load(filename)
-        print "playing", filename
-        pygame.mixer.music.play(-1)
-
-
-    def stop_song(self):
-        """Plays song continuously"""
-        try:
-            pygame.mixer.music.stop()
-        except KeyError:
-            print self.sounds
 
 SOUND = SoundBus()
 MUSIC = SoundBus()
