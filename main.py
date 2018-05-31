@@ -28,6 +28,8 @@ except TypeError:
 for layer in BACKGROUND_LAYERS:
     if "solid" in layer.name:
         MAIN_PHYSICAL_GROUP.add(layer)
+    if "water-beach" in layer.name:
+        layer.sfx = {"default": ("gentleWave.wav", "gentleWave1.wav", "wave.wav", "wave1.wav")}
     if "foreground" in layer.name:
         print layer.name
         FOREGROUND_LAYERS.append(layer)
