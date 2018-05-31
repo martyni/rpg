@@ -135,5 +135,6 @@ controls.main(background_layers=BACKGROUND_LAYERS,
               sprite_groups=[MAIN_PHYSICAL_GROUP, PC_PHYSICAL_GROUP],
               tiles=GAME_TILES,
               base_sprite=BaseSprite,
-              static_sprite=StaticSprite)
+              static_sprite=StaticSprite,
+              player_character=PC)
 exit(1)

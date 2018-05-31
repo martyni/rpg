@@ -1,3 +1,19 @@
+- children: {}
+  height: 32
+  i: 352
+  j: -32
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 320
+  j: -96
+  name: grass
+  states:
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
 - children:
     col:
       height: 32
@@ -14,22 +30,6 @@
   states:
     default: [assets/images/tile_water-beach-top_02.bmp, assets/images/tile_water-beach-top_03.bmp,
       assets/images/tile_water-beach-top_01.bmp, assets/images/tile_water-beach-top_00.bmp]
-  width: 32
-- children: {}
-  height: 32
-  i: 320
-  j: -96
-  name: grass
-  states:
-    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
-  width: 32
-- children: {}
-  height: 32
-  i: 352
-  j: -32
-  name: grass
-  states:
-    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
   width: 32
 - children: {}
   height: 32
@@ -83,11 +83,11 @@
   width: 32
 - children: {}
   height: 32
-  i: 672
-  j: 256
-  name: beach
+  i: 448
+  j: 160
+  name: grass
   states:
-    default: [assets/images/tile_beach_00.bmp]
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
   width: 32
 - children: {}
   height: 32
@@ -348,14 +348,6 @@
   height: 32
   i: 288
   j: 96
-  name: grass
-  states:
-    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
-  width: 32
-- children: {}
-  height: 32
-  i: 448
-  j: 160
   name: grass
   states:
     default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
@@ -2438,12 +2430,11 @@
   width: 32
 - children: {}
   height: 32
-  i: 640
-  j: 32
-  name: firebowl
+  i: 512
+  j: -96
+  name: grass
   states:
-    default: [assets/images/tile_firebowl_00.bmp, assets/images/tile_firebowl_01.bmp,
-      assets/images/tile_firebowl_03.bmp, assets/images/tile_firebowl_02.bmp]
+    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
   width: 32
 - children: {}
   height: 32
@@ -2591,14 +2582,6 @@
   height: 32
   i: 384
   j: -64
-  name: grass
-  states:
-    default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
-  width: 32
-- children: {}
-  height: 32
-  i: 512
-  j: -96
   name: grass
   states:
     default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
@@ -3022,6 +3005,14 @@
   states:
     default: [assets/images/tile_water-solid_02.bmp, assets/images/tile_water-solid_03.bmp,
       assets/images/tile_water-solid_01.bmp, assets/images/tile_water-solid_00.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 672
+  j: 256
+  name: beach
+  states:
+    default: [assets/images/tile_beach_00.bmp]
   width: 32
 - children:
     col:
@@ -3634,6 +3625,15 @@
   name: grass
   states:
     default: [assets/images/tile_grass_00.bmp, assets/images/tile_grass_01.bmp]
+  width: 32
+- children: {}
+  height: 32
+  i: 640
+  j: 32
+  name: firebowl
+  states:
+    default: [assets/images/tile_firebowl_00.bmp, assets/images/tile_firebowl_01.bmp,
+      assets/images/tile_firebowl_03.bmp, assets/images/tile_firebowl_02.bmp]
   width: 32
 - children:
     col:
