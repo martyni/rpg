@@ -69,6 +69,18 @@ def check_move(blocking):
             passback = True
     return passback
 
+def check_blocking(blocking):
+    """Auto-Unblocking"""
+    funcs = {
+        "up": down,
+        "down": up,
+        "left": right,
+        "right": left,
+    }
+    for direction in blocking:
+        if direction in funcs and not ACTIONS[direction]:
+            funcs[direction]()
+            break
 
 def move(i, j):
     """Global move function called on PC"""
@@ -146,23 +158,51 @@ def scroll(key, a_list, direction=1):
         key = len(a_list) - 1
     return key
 
+
+def load_tile(tile):
+    """Loads default tile images."""
+    return pygame.image.load(tile["states"]["default"][0])
+
+
+def draw_tile_previews(screen, width, tile_previews, rect_list, selected=0):
+    """Handles drawing out the available tiles and pointing out the current tile."""
+    menu_background = (180, 180, 180) #Light Grey
+    highlight_width = 3
+    highlight_color = (0, 255, 0) #Bright Green
+    block_color = (255, 255, 255, 170) #White with transparancy
+    spacing = width/len(tile_previews)
+    menu = pygame.draw.rect(screen, menu_background, [0, 0, width, 50])
+    for index, tile in enumerate(tile_previews):
+        r = screen.blit(tile, (index * spacing, 25))
+        if index == selected:
+            pygame.draw.rect(screen, highlight_color, r, highlight_width)
+        else:
+            # pylint: disable=c-extension-no-member
+            # C extension error for gfxdraw
+            pygame.gfxdraw.box(screen, r, block_color)
+    rect_list.append(pygame.Rect.copy(menu))
+    return rect_list
+
+
 # pylint: disable=too-many-arguments,unused-argument
 # yeh probably need to cut down
 # I might need to access kwargs in the future
 def main(background_layers=[],
+         foreground_layers=[],
          sprites=[],
          text=None,
          sprite_groups=None,
-         tiles=None,
+         tiles=[],
          base_sprite=None,
          **kwargs):
-    """ a """
+    """Main game loop handles the running of the game. """
     global SCREEN
     global BLANK_SCREEN
     text_queue = ["Hello Game", "How are you today?"]
     game = True
     clock = pygame.time.Clock()
     rect_list = []
+    tile_previews = [load_tile(tile) for tile in tiles]
     try:
         current_background_dump = load_background('level.yml')
         if current_background_dump is None:
@@ -179,6 +219,7 @@ def main(background_layers=[],
         grid_position = position_to_grid(position[0], position[1])
         cursor = pygame.Rect(grid_position[0], grid_position[1], SPACING, SPACING)
         rect_list.append(cursor)
+
         for event in ev.get():
             if event.type == QUIT:
                 game = False
@@ -292,11 +333,19 @@ def main(background_layers=[],
                                         rect_list.append(collision.children["col"].rect)
                                 blocking += sprite.collide(collision.rect)
                     group.add(sprite)
+        for layer in foreground_layers:
+            layer.update(sudo_clock/10)
         text_queue = text.update(text_queue)
         #grid(screen, rect_list, 640, 480)
         able_to_move = check_move(blocking)
+        check_blocking(blocking)
         #crt_tv(screen, rect_list, 640, 480)
         pygame.draw.rect(SCREEN, (255, 128, 56), cursor, 0)
+        rect_list = draw_tile_previews(SCREEN,
+                                       WIDTH,
+                                       tile_previews,
+                                       rect_list,
+                                       selected=current_tile)
         pygame.display.update(rect_list)
         if able_to_move:
             #screen.fill((randint(1,255), randint(1,255), randint(1,255)))

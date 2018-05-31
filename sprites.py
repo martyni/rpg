@@ -78,6 +78,7 @@ class BaseSprite(pygame.sprite.Sprite):
             (self.width, self.height)
         ).copy()
         self.rect = pygame.Rect(self.i, self.j, self.width, self.height)
+        self.offcenter = [self.rect.center[0], self.rect.center[1] - 5]
 
     def movement(self, i, j):
         """ Method takes the global value for x, y of PC and sets the local value of this sprite"""
@@ -279,8 +280,6 @@ class PlayerSprite(PhysicalSprite):
         """ Runs whenever a sprite in the same group as the playable character collides"""
         self.char_x, self.char_y = deepcopy(self.rect.center)
         col_x, col_y = rect.center
-        shoulders = list(self.rect.midtop)
-        shoulders[1] -= 31
         self.knee = [self.rect.midbottom[0],
                      self.rect.center[1] + (self.rect.midbottom[1] -  self.rect.center[1])/2]
         if col_x < self.char_x and (rect.collidepoint(self.rect.midleft)
@@ -289,9 +288,15 @@ class PlayerSprite(PhysicalSprite):
         if col_x > self.char_x and (rect.collidepoint(self.rect.midright)
                                     or rect.collidepoint(self.knee)):
             self.collisions[1] = "right"
-        if col_y > self.char_y and (rect.collidepoint(self.rect.midbottom)):
+        if col_y > self.char_y and (rect.collidepoint(self.rect.midbottom)
+                                    or rect.collidepoint(self.knee)
+                                    or rect.collidepoint(self.rect.midright)
+                                    or rect.collidepoint(self.rect.midleft)):
             self.collisions[2] = "down"
-        if col_y < self.char_y and (rect.collidepoint(self.rect.midtop)):
+        if col_y < self.char_y and (rect.collidepoint(self.offcenter)
+                                    or rect.collidepoint(self.knee)
+                                    or rect.collidepoint(self.rect.midright)
+                                    or rect.collidepoint(self.rect.midleft)):
             self.collisions[3] = "up"
         return self.collisions
 

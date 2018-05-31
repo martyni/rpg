@@ -4,6 +4,7 @@ python:
 # command to install dependencies
 install:
   - pip install -r requirements.txt
+  - sudo apt-get install build-essential checkinstall && sudo apt-get build-dep imagemagick -y
 # command to run tests
 script: 
   - ./lint.sh

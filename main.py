@@ -19,18 +19,24 @@ except IOError:
     TILE_LIST = []
 try:
     BACKGROUND_LAYERS = [BaseSprite(**t) for t in TILE_LIST]
+    FOREGROUND_LAYERS = []
 except TypeError:
     BACKGROUND_LAYERS = []
+    FOREGROUND_LAYERS = []
 
 #Add the solid tiles to the MAIN_PHYSICAL_GROUP for collisions
 for layer in BACKGROUND_LAYERS:
     if "solid" in layer.name:
         MAIN_PHYSICAL_GROUP.add(layer)
+    if "foreground" in layer.name:
+        print layer.name
+        FOREGROUND_LAYERS.append(layer)
     if layer.children:
         for child in layer.children:
             name, sprite_dict = layer.children.popitem()
             layer.children[name] = BaseSprite(**sprite_dict)
             layer.children[name].draw_method = layer.children[name].draw_blend_max
+
 
 
 #Create the list of tiles found in Assets for editing
@@ -121,6 +127,7 @@ PC_PHYSICAL_GROUP.add(PC)
 
 
 controls.main(background_layers=BACKGROUND_LAYERS,
+              foreground_layers=FOREGROUND_LAYERS,
               sprites=LEVEL_SPRITES + STATIC_SPRITES,
               text=A_TEXT,
               sprite_groups=[MAIN_PHYSICAL_GROUP, PC_PHYSICAL_GROUP],
