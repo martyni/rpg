@@ -28,6 +28,8 @@ except TypeError:
 for layer in BACKGROUND_LAYERS:
     if "solid" in layer.name:
         MAIN_PHYSICAL_GROUP.add(layer)
+    if "water-beach" in layer.name:
+        layer.sfx = {"default": ("gentleWave.wav", "gentleWave1.wav", "wave.wav", "wave1.wav")}
     if "foreground" in layer.name:
         print layer.name
         FOREGROUND_LAYERS.append(layer)
@@ -133,5 +135,6 @@ controls.main(background_layers=BACKGROUND_LAYERS,
               sprite_groups=[MAIN_PHYSICAL_GROUP, PC_PHYSICAL_GROUP],
               tiles=GAME_TILES,
               base_sprite=BaseSprite,
-              static_sprite=StaticSprite)
+              static_sprite=StaticSprite,
+              player_character=PC)
 exit(1)

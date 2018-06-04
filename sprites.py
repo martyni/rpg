@@ -15,6 +15,7 @@ from pygame import gfxdraw, error
 from pygame.locals import BLEND_MAX
 import controls
 from controls import pygame, log
+from sound import SOUND
 
 def draw_points(points_list):
     """Draws points as circles"""
@@ -67,12 +68,21 @@ class BaseSprite(pygame.sprite.Sprite):
         self.current_move = self.still
         self.passback = {}
         self.draw_method = self.draw_standard
+        self.cooldown_map = {}
         self.state_map = {
             "up": self.up,
             "down": self.down,
             "left": self.left,
             "right": self.right
         }
+        self.sfx = {
+            "default": None,
+            #"up": "step1.wav",
+            #"down": "step1.wav",
+            #"left": "step1.wav",
+            #"right": "step1.wav"
+        }
+
         self.image = pygame.transform.scale(
             self.states[self.state][self.step],
             (self.width, self.height)
@@ -173,7 +183,7 @@ class BaseSprite(pygame.sprite.Sprite):
 
     def each_frame(self):
         """ method handle to do each frame"""
-        pass
+        self.sound_handling()
 
     def resize(self, *args):
         """ Method to handle screen resizes"""
@@ -204,6 +214,18 @@ class BaseSprite(pygame.sprite.Sprite):
             (self.i + controls.X, self.j + controls.Y),
             )
 
+    def sound_handling(self):
+        """Sends requests to SOUND to play sounds also handles sound cooldown"""
+        sfx = self.sfx.get(self.state)
+        if self.cooldown_map.get(sfx):
+            self.cooldown_map[sfx] -= 1
+        elif sfx is None:
+            pass
+        else:
+            self.cooldown_map[self.sfx[self.state]] = 20
+            if isinstance(sfx, tuple):
+                sfx = choice(sfx)
+            SOUND.play_sound(self.rect.x, self.rect.y, sfx)
 
 
 class PhysicalSprite(BaseSprite):
@@ -220,6 +242,7 @@ class PhysicalSprite(BaseSprite):
             self.height/8,
             (10, 10, 10, 220)
         )
+
 
 
 class StaticSprite(PhysicalSprite):
@@ -258,6 +281,7 @@ class NpcSprite(PhysicalSprite):
             self.choose_random_direction()
         self.current_move()
         self.move += 1
+        self.sound_handling()
 
 
 class PlayerSprite(PhysicalSprite):
@@ -330,6 +354,7 @@ class PlayerSprite(PhysicalSprite):
         self.i = self.x
         self.j = self.y
         self.passback = {}
+        #self.sound_handling()
         #draw_points([self.rect.center,
         #                   self.rect.midleft,
         #                   self.rect.midbottom,
